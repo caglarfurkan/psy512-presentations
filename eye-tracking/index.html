@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en" data-deck="psy512-duet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dual-Eye-Tracking Vygotsky · Shvarts &amp; Abrahamson (2019)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/deck.css">
+<style>
+  /* the paper's own colour code: student gaze yellow, tutor gaze red; triangle blue or green */
+  :root { --accent: #0A7F45; --accent-d: #3DDC84; --second: #C8102E; --second-d: #FF5A5A; --stu: #9A6A00; --tut: #C8102E; --green: #2DBE6C; --blue: #2F6BFF; }
+  .slide.dark { --stu: #FFC61A; --tut: #FF5A5A; }
+  .stu { color: var(--stu); } .tut { color: var(--tut); }
+  .dot { display: inline-block; width: 18px; height: 18px; border-radius: 50%; vertical-align: -2px; margin-right: 8px; }
+
+  .cover { display: grid; grid-template-columns: 1fr 760px; gap: 64px; flex: 1; align-items: end; }
+  .foot { display: flex; justify-content: space-between; font: 400 24px/1.3 var(--mono); }
+  canvas.screen { background: #000; width: 100%; touch-action: none; }
+
+  .road { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 3px solid var(--ink); }
+  .road div { padding: 20px 22px 0; border-left: 3px solid var(--ink); display: flex; flex-direction: column; gap: 10px; }
+  .road div:first-child { border-left: 0; padding-left: 0; }
+  .road b { font: 800 84px/.9 var(--display); font-stretch: 70%; color: var(--accent); }
+  .road h3 { font: 700 34px/1.04 var(--display); font-stretch: 82%; }
+  .road p { font: 400 22px/1.35 var(--body); color: var(--mute); }
+
+  .forms { display: grid; grid-template-columns: 1fr 120px 1fr; align-items: stretch; gap: 0; }
+  .forms .f { border: 3px solid var(--ink); padding: 26px 30px; display: flex; flex-direction: column; gap: 10px; }
+  .forms .f.ideal { background: var(--ink); color: var(--paper); }
+  .forms .f.ideal p { color: #C8CCD2; }
+  .forms .f p { font: 400 25px/1.36 var(--body); color: var(--mute); }
+  .forms .arrow { display: grid; place-items: center; font: 800 72px var(--display); color: var(--accent); }
+
+  .graph { background: var(--card); border: 1px solid var(--rule); }
+  .graph svg { display: block; width: 100%; height: 470px; }
+  .graph .fx { transition: opacity .4s; }
+
+  .mit { display: grid; grid-template-columns: 1fr; }
+  .rq { width: 100%; border-collapse: collapse; }
+  .rq th { text-align: left; font: 500 20px/1.3 var(--mono); color: var(--mute); padding: 0 28px 12px 0; border-bottom: 3px solid var(--ink); }
+  .rq td { padding: 20px 28px 20px 0; border-bottom: 1px solid var(--rule); vertical-align: top; font: 400 27px/1.34 var(--body); }
+  .rq td:first-child { font: 800 64px/.9 var(--display); font-stretch: 70%; color: var(--accent); width: 70px; }
+  .rq td:nth-child(2) { font-weight: 650; width: 40%; }
+
+  .chain { display: flex; align-items: center; gap: 14px; font: 500 22px var(--mono); flex-wrap: wrap; }
+  .chain span { border: 2px solid var(--ink); padding: 12px 14px; }
+  .chain span.t { background: var(--tut); border-color: var(--tut); color: #fff; }
+  .chain span.s { background: #FFC61A; border-color: #FFC61A; color: #0F1012; }
+  .chain i { font-style: normal; color: var(--mute); }
+
+  .taskbar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .taskbar .chip { font-size: 19px; padding: 10px 14px; }
+  .readout { font: 500 22px var(--mono); margin-left: auto; }
+  .simhead { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .legend { display: flex; gap: 28px; font: 500 21px var(--mono); align-items: center; }
+
+  .talk { display: flex; flex-direction: column; gap: 10px; }
+  .talk p { font: 400 25px/1.34 var(--body); padding: 12px 18px; max-width: 88%; }
+  .talk .T { background: var(--tut); color: #fff; align-self: flex-start; }
+  .talk .S { background: #FFC61A; color: #0F1012; align-self: flex-end; }
+  .talk .note { font: 400 19px/1.4 var(--mono); color: var(--mute); padding: 0; max-width: none; }
+
+  .model { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .model th { text-align: left; vertical-align: bottom; padding: 0 20px 14px 0; border-bottom: 3px solid var(--ink); font: 700 34px/1.02 var(--display); font-stretch: 80%; }
+  .model th small { display: block; font: 500 19px var(--mono); color: var(--accent); margin-bottom: 6px; }
+  .model th:first-child, .model td:first-child { width: 210px; font: 500 20px/1.3 var(--mono); color: var(--mute); }
+  .model td { padding: 16px 20px 16px 0; border-bottom: 1px solid var(--rule); vertical-align: top; font: 400 24px/1.32 var(--body); }
+  .sync { height: 16px; background: var(--rule); position: relative; margin-top: 8px; }
+  .sync i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); }
+</style>
+
+<main class="stage" id="stage">
+
+  <!-- 1 · Cover -->
+  <section class="slide dark" data-hook="cover">
+    <div class="meta"><span>PSY 412 / 512 · Visual Cognition · Week 11</span><span>Eye Tracking</span></div>
+    <div class="cover">
+      <div class="stack" style="gap:28px">
+        <h1 class="mega" style="font-size:140px">Dual-Eye-Tracking Vygotsky</h1>
+        <p class="lede">A microgenetic account of a teaching/learning collaboration in an embodied mathematics tutorial</p>
+        <p class="label">Shvarts, A., &amp; Abrahamson, D. (2019). <i>Learning, Culture and Social Interaction, 22</i>, 100316.</p>
+      </div>
+      <figure class="stack" style="gap:12px">
+        <canvas class="screen" id="coverCv" width="1100" height="640"></canvas>
+        <figcaption class="legend"><span><i class="dot" style="background:#FFC61A"></i>student's gaze</span><span><i class="dot" style="background:#FF5A5A"></i>tutor's gaze</span><span style="color:var(--mute)">schematic</span></figcaption>
+      </figure>
+    </div>
+    <div class="foot"><span data-edit="date">9 December 2026 · FASS G052</span><span data-edit="name">Furkan Çağlar</span></div>
+    <aside class="notes">Two people look at the same triangle. One moves it, one watches. The yellow and red trails are where each of them is looking. The paper's whole argument is in the relationship between those two trails.</aside>
+  </section>
+
+  <!-- 2 · Overview -->
+  <section class="slide">
+    <div class="meta"><span>The paper</span><span>A qualitative case study with two eye trackers</span></div>
+    <h2 class="title">When a tutor watches a student think, where do the tutor's eyes go?</h2>
+    <p class="lede">One eye tracker shows where a person looks. Two, on the same screen, show a relationship.</p>
+    <div class="spacer"></div>
+    <div class="road">
+      <div><b>1</b><h3>Background</h3><p>Vygotsky, expert vision, embodied design, joint attention</p></div>
+      <div><b>2</b><h3>Question</h3><p>Is teaching/learning one coupled system? What would that look like in gaze?</p></div>
+      <div><b>3</b><h3>Method</h3><p>Dual eye tracking, four dyads, one triangle</p></div>
+      <div><b>4</b><h3>Results</h3><p>Four phases, from following to reframing</p></div>
+      <div><b>5</b><h3>Discussion</h3><p>The micro-zone of proximal development, and what to doubt</p></div>
+    </div>
+    <div class="spacer"></div>
+    <aside class="notes">This paper is different from the others this week: it is not a cognitive-psychology experiment with conditions and statistics. It is a frame-by-frame qualitative analysis of four tutoring sessions, used to put empirical flesh on a hundred-year-old theory. I follow the standard order, and you will do the task yourselves before seeing the results.</aside>
+  </section>
+
+  <!-- 3 · Vygotsky -->
+  <section class="slide">
+    <div class="meta"><span>Background 1</span><span>Vygotsky's claim</span></div>
+    <h2 class="title">Learning is something two people do together.</h2>
+    <div class="forms">
+      <div class="f"><span class="label">Real form · naive</span><h3 class="h3">How the learner perceives and acts now</h3><p>“The triangle turns green somewhere around here.”</p></div>
+      <div class="arrow">→</div>
+      <div class="f ideal"><span class="label" style="color:#9DA3AC">Ideal form · cultural</span><h3 class="h3">How the culture perceives and acts</h3><p>“Those are the points equidistant from a point and a line. A parabola.”</p></div>
+    </div>
+    <div class="cols c3" style="flex:0; margin-top:12px">
+      <div class="cell" data-step="1"><span class="n">Idea 1 · the gardener</span><p><b>Teach by arranging the environment.</b> You do not grow a plant by pulling on it.</p></div>
+      <div class="cell" data-step="2"><span class="n">Idea 2 · collaboration</span><p><b>Ideal forms first exist between people</b>, then become the individual's own.</p></div>
+      <div class="cell" data-step="3"><span class="n">Zone of proximal development</span><p>What the learner <b>can do with someone</b>, but not yet alone.</p></div>
+    </div>
+    <p class="src" data-step="3">The problem for a century: nobody could observe how the tutor and the student were each perceiving the situation while it happened.</p>
+    <aside class="notes">Real and ideal are meant narrowly here: the starting and the target way of perceiving and acting. Vygotsky's two lines of thought both matter for this study: the task environment is designed so that the student can discover the rule herself (the gardener), and yet a tutor is indispensable (collaboration). The authors' motivation: these claims were never tested at the level of perception, because there was no instrument. Dual eye tracking is the instrument.</aside>
+  </section>
+
+  <!-- 4 · Looking is not seeing -->
+  <section class="slide" data-hook="graph">
+    <div class="meta"><span>Background 2</span><span>Education changes perception</span></div>
+    <h2 class="title">Looking is not seeing.</h2>
+    <div class="cols" style="grid-template-columns: 820px 1fr">
+      <div class="stack" style="gap:14px">
+        <div class="graph"><svg id="graphSvg" viewBox="0 0 820 470"></svg></div>
+        <div class="row"><div class="seg" data-seg="who"><button data-v="nov" aria-pressed="true">Novice</button><button data-v="exp">Expert</button><button data-v="none">No gaze</button></div><span class="label">Illustration of the cited findings, not recorded data</span></div>
+      </div>
+      <div class="stack">
+        <ul class="list">
+          <li><b>Same picture, different objects.</b> Novices attend to a line's local details; experts to slope and intercepts.</li>
+          <li data-step="1"><b>Showing learners an expert's gaze helps</b> in radiology and zoology: where to look.</li>
+          <li data-step="2"><b>It does not help</b> in geometry and problem solving. There the hard part is <b>how to see</b>.</li>
+          <li data-step="3" class="accent"><b style="color:inherit">So an ideal form of perception cannot simply be pointed at.</b></li>
+        </ul>
+      </div>
+    </div>
+    <p class="src">Arcavi (2003); Gegenfurtner et al. (2011); van Gog et al. (2009), as reviewed in Shvarts &amp; Abrahamson (2019), §2.2.</p>
+    <aside class="notes">Toggle novice and expert. The dots are an illustration of what the cited eye-tracking studies report. This is the link to the rest of week 11: eye movements show selection, but two people can fixate the same point and see different things. The key move for this paper: gaze-modelling works where the task is to find the right location, and fails where the task is to construe the display differently. That sets up the claim that mathematical perception has to be grown through the learner's own activity.</aside>
+  </section>
+
+  <!-- 5 · Embodied design -->
+  <section class="slide" data-hook="mit">
+    <div class="meta"><span>Background 3</span><span>Try it · the Mathematics Imagery Trainer</span></div>
+    <h2 class="title">First learn the movement. Then name it.</h2>
+    <div class="cols" style="grid-template-columns: 820px 1fr">
+      <div class="stack" style="gap:12px">
+        <canvas class="screen" id="mitCv" width="820" height="520" style="width:820px"></canvas>
+        <span class="label">Drag the two markers. Find one green position, then find three more.</span>
+      </div>
+      <div class="stack">
+        <p class="body">The screen is green only at one hidden ratio. To keep it green while moving, the hands must travel at <b>different speeds</b>.</p>
+        <div class="cell" data-step="1"><span class="n">Action-based design</span><p>Step 1: <b>solve a movement problem</b> with no symbols on screen. Step 2: the tutor brings in the mathematics to describe what the body already does.</p></div>
+        <div class="cell" data-step="2"><span class="n">Attentional anchor</span><p>An <b>imagined structure</b> the learner invents to steer the movement, for example the gap between the hands. It shows up as a <b>stable, repeating eye-movement pattern</b>.</p></div>
+      </div>
+    </div>
+    <p class="src">After Abrahamson &amp; Trninic (2011), Fig. 1 in the paper. This demo uses a 1:2 ratio.</p>
+    <aside class="notes">Let someone find green by trial and error. The naive strategy, keeping a fixed distance between the hands, fails as soon as you move up. Students who succeed start looking at something that is not drawn anywhere, such as the interval between the hands growing as it rises. That invented perceptual object is the attentional anchor, and it is the central construct for the results: the authors identify it from repeating saccade patterns.</aside>
+  </section>
+
+  <!-- 6 · Joint attention -->
+  <section class="slide">
+    <div class="meta"><span>Background 4</span><span>Joint action and joint attention</span></div>
+    <h2 class="title">How do two people end up looking at the same thing?</h2>
+    <div class="cols c2">
+      <div class="stack">
+        <div class="cell"><span class="n">The classic answer</span><h3 class="h3">Gaze following</h3><p>I check your eyes, work out what you are attending to, and look there.</p></div>
+        <div class="cell" data-step="1"><span class="n">What dual eye tracking found</span><h3 class="h3">Watching the hands</h3><p>Infants and parents reach joint attention mostly by <b>looking at the object the other is handling</b>. No mind-reading needed.</p></div>
+      </div>
+      <div class="stack" data-step="2">
+        <ul class="list">
+          <li><b>Observers predict.</b> Watching someone act, the eyes arrive ahead of the hand.</li>
+          <li><b>Learning is better when the learner leads</b> joint attention and the adult follows.</li>
+          <li><b>Experts and novices drift toward each other</b> when they play Tetris together.</li>
+        </ul>
+        <p class="quote" data-step="3">The paper's strong claim: tutoring always rests on this silent sensorimotor coordination, even when nothing visible is happening.</p>
+      </div>
+    </div>
+    <p class="src">Yu &amp; Smith (2016, 2017); Flanagan &amp; Johansson (2003); Tomasello &amp; Farrar (1986); Jermann et al. (2010), as reviewed in §2.4.</p>
+    <aside class="notes">Two routes to joint attention. The second route matters here: the partner's action on an object is a simple, ecologically available cue. Add anticipation: when we watch an action, our gaze leads it. The authors combine these into 'intersubjective coupling of perception-action systems': student and tutor as one distributed system. The last line is the hypothesis the empirical part is meant to support.</aside>
+  </section>
+
+  <!-- 7 · Research questions -->
+  <section class="slide">
+    <div class="meta"><span>Research questions</span><span>§2.5</span></div>
+    <h2 class="title sm">What evidence of coupling can be found in two people's gaze, and what does it do for learning?</h2>
+    <table class="rq">
+      <tr><th></th><th>If the theory is right, we should see…</th><th>…which would stand for</th></tr>
+      <tr><td>1</td><td>Student and tutor eye movements that are sometimes alike and sometimes not</td><td><b>Real vs. ideal forms</b> of perceiving the same display</td></tr>
+      <tr data-step="1"><td>2</td><td>Their gaze becoming synchronous and landing on the same place</td><td><b>Joint attention</b>: how it starts and how it is kept</td></tr>
+      <tr data-step="2"><td>3</td><td>The tutor's gaze tied to what the student's hand is doing</td><td><b>Coupling</b> of the two into a single system</td></tr>
+    </table>
+    <p class="body" data-step="3" style="color:var(--mute)">No hypotheses to reject and no conditions to compare. These are things to look for.</p>
+    <aside class="notes">The authors call the model neo-Vygotskian: pedagogical interaction as dynamical coupling between two perception-action systems. The three questions are operationalisations rather than testable predictions. That is worth saying out loud, because it shapes how much the results can show.</aside>
+  </section>
+
+  <!-- 8 · Method -->
+  <section class="slide">
+    <div class="meta"><span>Method</span><span>§3</span></div>
+    <h2 class="title">Two pairs of goggles, one screen.</h2>
+    <div class="cols c2">
+      <div class="stack">
+        <ul class="list tight">
+          <li><b>Instrument:</b> two head-mounted Pupil Labs eye trackers, 60 Hz (one sample every ~17 ms), scene camera 30 Hz</li>
+          <li><b>Novelty:</b> both gaze paths drawn onto one video of the shared screen, with hands and gestures</li>
+          <li><b>Participants:</b> four psychology undergraduates, 17–21, no memory of the parabola definition</li>
+          <li><b>Tutors were told:</b> help, but never give the solution</li>
+        </ul>
+        <div class="stack" style="gap:10px" data-step="1">
+          <span class="label">Four dyads from four students: each first student then tutors the next</span>
+          <div class="chain"><span class="t">Researcher</span><i>tutors</i><span class="s">Student 1</span><i>then tutors</i><span class="s">Student 2</span><i>× 2</i></div>
+        </div>
+      </div>
+      <div class="stack" data-step="2">
+        <h3 class="h3">Task and analysis</h3>
+        <ul class="list tight">
+          <li><b>Stage 1:</b> “Make the triangle green”, then “move it so it stays green”. <small>The only stage analysed in this paper</small></li>
+          <li><b>Stage 2:</b> axes appear; work out the formula of the curve</li>
+          <li><b>Stage 3:</b> a grid; predict green points from the formula</li>
+          <li><b>Analysis:</b> micro-ethnography. Frame by frame through video, audio and both gaze paths. The unit is <b>the dyad</b>, not the individual.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="src">Calibration: 5 points each, before the task. The student moves the triangle with a finger on a touchpad.</p>
+    <aside class="notes">Give the numbers plainly, they matter for the critique. Sixty hertz means 17 milliseconds between samples. The chain design is clever: a student who has just learned the task becomes the tutor, so there are four dyads, two with the researcher as tutor and two with a peer. The authors report the same phases in all four. No quantitative coding is reported. Next slide: you do stage 1.</aside>
+  </section>
+
+  <!-- 9 · The task -->
+  <section class="slide dark" data-hook="task">
+    <div class="meta"><span>Try it · Stage 1 of the study</span><span>I am the tutor. I will not tell you the rule.</span></div>
+    <h2 class="title sm" id="taskTitle">Make the triangle green. Then move it so it stays green.</h2>
+    <canvas class="screen" id="taskCv" width="1664" height="640" style="height:640px"></canvas>
+    <div class="taskbar">
+      <button class="chip" id="tTrace" aria-pressed="false">Leave a trace</button>
+      <button class="chip" id="tGeo" aria-pressed="false">Reveal the geometry</button>
+      <button class="chip" id="tAxes" aria-pressed="false">Stage 2 · axes</button>
+      <button class="chip" id="tGaze" aria-pressed="false" title="Experimental: webcam gaze estimate. Needs camera permission.">Webcam gaze</button>
+      <button class="chip" id="tReset">Reset</button>
+      <span class="label" id="tGazeMsg"></span>
+      <span class="readout" id="tRead">green for 0.0 s · best 0.0 s</span>
+    </div>
+    <aside class="notes">Hand the mouse or the touchpad to a volunteer; drag the top corner. Say only the two instructions from the study. Encourage, ask them to go faster or smoother, and wait. When they are fluent, ask the paper's question: 'Could you think about the triangle? How do you keep it green?' Then switch on the trace: the green points draw a parabola. Reveal the geometry: the triangle is green when it is isosceles, the moving corner equally far from the fixed point and from the line below. Webcam gaze is optional and rough: it draws the volunteer's last two seconds of gaze in yellow, like the paper's figures.</aside>
+  </section>
+
+  <!-- 10 · Reading the data -->
+  <section class="slide dark" data-hook="trail">
+    <div class="meta"><span>Method · Fig. 3</span><span>Try it · your mouse is the eye</span></div>
+    <h2 class="title">How to read a gaze path.</h2>
+    <div class="cols" style="grid-template-columns: 1040px 1fr">
+      <canvas class="screen" id="trailCv" width="1040" height="600" style="width:1040px; cursor:crosshair"></canvas>
+      <div class="stack">
+        <ul class="list">
+          <li><b>The circle</b> is where the eye is now.</li>
+          <li><b>The line</b> is the last two seconds.</li>
+          <li><b>Each dot is one sample</b>, 17 ms apart.</li>
+          <li data-step="1"><b>Dots piled into a knot:</b> a fixation.</li>
+          <li data-step="1"><b>Dots strung out evenly:</b> smooth pursuit of something moving.</li>
+          <li data-step="1"><b>A long bare line:</b> a saccade.</li>
+        </ul>
+        <p class="label" id="trailRead"></p>
+      </div>
+    </div>
+    <aside class="notes">Move the mouse over the black area as if it were an eye: rest, follow something slowly, jump. The trail is drawn exactly the way the paper draws gaze: sixty samples a second, two seconds of history. Three signatures to remember for the results: knots are fixations, evenly spaced dots are pursuit, long gaps are saccades. Every result figure in the paper is a still of two such trails, yellow for the student and red for the tutor.</aside>
+  </section>
+
+  <!-- 11 · Phase 1 -->
+  <section class="slide dark" data-hook="p1">
+    <div class="meta"><span>Results · Phase 1 of 4</span><span>Convergence</span></div>
+    <h2 class="title sm">The tutor's eyes ride on the student's hand.</h2>
+    <div class="cols" style="grid-template-columns: 1040px 1fr">
+      <div class="stack" style="gap:12px">
+        <canvas class="screen" id="p1Cv" width="1100" height="640" style="width:1040px"></canvas>
+        <div class="simhead"><div class="seg" data-seg="p1"><button data-v="both" aria-pressed="true">Both</button><button data-v="stu">Student</button><button data-v="tut">Tutor</button></div><span class="label">Schematic reconstruction of Figs. 6–8 · lag exaggerated</span></div>
+      </div>
+      <div class="stack">
+        <p class="body">The student hunts for green spots. The triangle is mostly blue.</p>
+        <ul class="list tight">
+          <li data-step="1"><b>Tutor's gaze trails the student's by ~17 ms</b>, sometimes 30–60. <small>A reaction to a new stimulus takes 80–150 ms</small></li>
+          <li data-step="2"><b>The student's eyes plan:</b> jump ahead, wait ~600 ms, then the hand follows.</li>
+          <li data-step="3"><b>At a surprise turn</b> the tutor falls 200–300 ms behind, then locks on again.</li>
+        </ul>
+        <p class="body accent" data-step="4"><b>Joint attention comes out of joint action.</b> The student leads; the tutor is tuned to the real form.</p>
+      </div>
+    </div>
+    <aside class="notes">In this phase the two gaze paths are nearly on top of each other. The authors' argument: a lag far shorter than saccadic reaction time means the tutor is anticipating, not reacting. The tutor is not reading the student's eyes; both are coupled to the same moving object, which acts like an extension of the student's body. Switch to student only to show the look-ahead: gaze goes to where the triangle will be moved. Keep in mind for the critique: 17 milliseconds is exactly one sample.</aside>
+  </section>
+
+  <!-- 12 · Phase 2 -->
+  <section class="slide dark" data-hook="p2">
+    <div class="meta"><span>Results · Phase 2 of 4</span><span>Divergence</span></div>
+    <h2 class="title sm">Same triangle. The tutor starts seeing something else.</h2>
+    <div class="cols" style="grid-template-columns: 1040px 1fr">
+      <div class="stack" style="gap:12px">
+        <canvas class="screen" id="p2Cv" width="1100" height="640" style="width:1040px"></canvas>
+        <div class="simhead"><div class="seg" data-seg="p2"><button data-v="both" aria-pressed="true">Both</button><button data-v="stu">Student</button><button data-v="tut">Tutor</button></div><span class="label">Schematic reconstruction of Fig. 9</span></div>
+      </div>
+      <div class="stack">
+        <p class="body">The student can now find green, shakily. No rule yet.</p>
+        <ul class="list tight">
+          <li data-step="1"><span class="stu"><b style="color:inherit">Student:</b></span> smooth pursuit of the corner being moved.</li>
+          <li data-step="2"><span class="tut"><b style="color:inherit">Tutor:</b></span> quick back-and-forth saccades <b>along the median or a side</b>, restarting from wherever the student puts the corner.</li>
+          <li data-step="3">An <b>“inert” attentional anchor</b>: the eye pattern of someone keeping it isosceles, without moving anything.</li>
+        </ul>
+        <p class="body accent" data-step="4"><b>Out of sync in perception, still coupled in action.</b> One sees “green”, the other sees “isosceles”.</p>
+      </div>
+    </div>
+    <aside class="notes">This is the paper's most interesting observation. As soon as the triangle is green, the tutor's gaze stops following and starts measuring: saccades from the moving vertex down the median or along a side, as if checking the two equal lengths. The tutor is rehearsing how she would do it herself. Real and ideal forms now coexist in the same activity. The authors speculate about the function: the tutor keeps comparing the student's performance to the ideal and waits for the right moment to step in.</aside>
+  </section>
+
+  <!-- 13 · Phase 3 -->
+  <section class="slide dark" data-hook="p3">
+    <div class="meta"><span>Results · Phase 3 of 4</span><span>Embodied discovery</span></div>
+    <h2 class="title sm">The student's eyes find a structure of their own.</h2>
+    <div class="cols" style="grid-template-columns: 1040px 1fr">
+      <div class="stack" style="gap:12px">
+        <canvas class="screen" id="p3Cv" width="1100" height="640" style="width:1040px"></canvas>
+        <div class="simhead"><div class="seg" data-seg="p3"><button data-v="both" aria-pressed="true">Both</button><button data-v="stu">Student</button><button data-v="tut">Tutor</button></div><span class="label">Schematic reconstruction of Figs. 10–11</span></div>
+      </div>
+      <div class="stack">
+        <p class="body">The tutor only encourages: “faster”, “smoother”. Never says where to look.</p>
+        <ul class="list tight">
+          <li data-step="1"><b>Movement becomes fluent</b>, quicker and more accurate.</li>
+          <li data-step="2"><span class="stu"><b style="color:inherit">Student:</b></span> pursuit gives way to <b>repeating saccades</b> along the median or a side. An attentional anchor has formed.</li>
+          <li data-step="3"><b>Not the tutor's pattern.</b> In one dyad the student runs the median while the tutor checks one side, then the other.</li>
+        </ul>
+        <p class="body accent" data-step="4"><b>The environment did the teaching.</b> The student knows how, but cannot yet say what.</p>
+      </div>
+    </div>
+    <aside class="notes">The student arrives at an anchor through her own practice inside the designed task: Vygotsky's gardener. Important detail: the student's and tutor's anchors need not be the same pattern. What has to be shared in the end is the mathematical meaning, not the scan path. Having an anchor does not mean being aware of the rule, which is why phase 4 is needed.</aside>
+  </section>
+
+  <!-- 14 · Phase 4 -->
+  <section class="slide">
+    <div class="meta"><span>Results · Phase 4 of 4</span><span>Conceptual discovery</span></div>
+    <h2 class="title sm">One question, asked at the right moment. Or too soon.</h2>
+    <div class="cols c2">
+      <div class="stack">
+        <span class="tag accent">Dyad 1 · it works</span>
+        <div class="talk">
+          <p class="T">“Could you think about the triangle?”</p>
+          <p class="S" data-step="1">Not equilateral… isosceles. “Two sides of equal length.”</p>
+          <p class="note" data-step="1">She names the rule first and only then looks along the sides.</p>
+        </div>
+        <p class="body" data-step="2">The tutor points at nothing. She <b>reframes</b> what the student is already looking at.</p>
+      </div>
+      <div class="stack" data-step="3">
+        <span class="tag second">Dyad 2 · too early</span>
+        <div class="talk">
+          <p class="T">“Can you think of a rule that keeps it green?”</p>
+          <p class="S">“This angle will be the same.”</p>
+          <p class="T">Even at the bottom, where it is almost a line?</p>
+          <p class="S">“Let me check it!”</p>
+          <p class="note">Her anchor worked on the left and right branches only. More practice across the bottom; the next prompt succeeds.</p>
+        </div>
+      </div>
+    </div>
+    <p class="body" data-step="4" style="border-top:3px solid var(--ink); padding-top:16px"><b class="accent">Micro-zone of proximal development:</b> the moment when the body already has the solution and one prompt can turn it into a concept.</p>
+    <p class="src">Dialogue shortened from the transcripts in §4.4.</p>
+    <aside class="notes">Two cases make the argument. In the first, the student is fluent, has an anchor, and a question about 'the triangle' as a whole is enough: the concept was already there in action. In the second the tutor asks before the student has integrated the bottom of the curve into the same movement scheme; she gives a non-normative rule about an angle, and the tutor sends her back to practise. The authors read the failure as the tutor not attending to the student's micro-history. The term they introduce is the micro-zone of proximal development.</aside>
+  </section>
+
+  <!-- 15 · Model -->
+  <section class="slide">
+    <div class="meta"><span>Discussion in the paper</span><span>The model in one table</span></div>
+    <h2 class="title sm">Teaching and learning as one system with two pairs of eyes.</h2>
+    <table class="model">
+      <tr><th></th><th><small>Phase 1</small>Convergence</th><th><small>Phase 2</small>Divergence</th><th><small>Phase 3</small>Embodied discovery</th><th><small>Phase 4</small>Conceptual discovery</th></tr>
+      <tr><td>Student's eyes</td><td>Follow the corner, plan ahead</td><td>Follow the corner</td><td>Own anchor: saccades along median or side</td><td>Stay on the anchor; look at the sides after naming the rule</td></tr>
+      <tr><td>Tutor's eyes</td><td>Lock onto the student's action</td><td>Ideal-form anchor, launched from the student's corner</td><td>Keep their own anchor, watch for fluency</td><td>Follow closely</td></tr>
+      <tr><td>Tutor says</td><td>Almost nothing</td><td>Almost nothing</td><td>“Faster”, “smoother”</td><td>One reframing question</td></tr>
+      <tr><td>Gaze in sync?</td><td>High<div class="sync"><i style="width:92%"></i></div></td><td>Low<div class="sync"><i style="width:22%"></i></div></td><td>Low; patterns may differ<div class="sync"><i style="width:30%"></i></div></td><td>Shared in meaning, not in path<div class="sync"><i style="width:55%"></i></div></td></tr>
+    </table>
+    <p class="body" data-step="1"><b>Throughout, the tutor's perception stays tied to the student's action.</b> That constant link, not matching gaze, is what the authors call coupling.</p>
+    <p class="src">Sync bars are my qualitative summary; the paper reports no synchrony measure.</p>
+    <aside class="notes">The summary the paper builds toward. Synchrony of gaze is high only at the start. What persists across all four phases is that the tutor's eye movements depend on what the student's hand is doing. The authors conclude that the two form a single distributed system, and that the tutor's silent tracking is what lets her find the micro-zone. Note the honest label on the bars.</aside>
+  </section>
+
+  <!-- 16 · Implications -->
+  <section class="slide">
+    <div class="meta"><span>Discussion in the paper</span><span>Educational applications</span></div>
+    <h2 class="title">Reframe attention. Do not redirect it.</h2>
+    <div class="cols c3" style="flex:0">
+      <div class="cell"><span class="n">For tutors</span><p><b>Watch the action before you speak.</b> The useful prompt works on what the learner is already looking at.</p></div>
+      <div class="cell" data-step="1"><span class="n">For interface cues</span><p>Arrows, highlights and animations <b>move attention to a new place</b>. The paper suggests giving new meaning to the current place instead.</p></div>
+      <div class="cell" data-step="2"><span class="n">For educational technology</span><p>Many screens and adaptive systems can <b>break the shared operational point</b> that joint attention grows from.</p></div>
+    </div>
+    <p class="quote" data-step="3" style="margin-top:40px">Open, by the authors' own account: when does this coupling arise, in which other settings, and how often does reframing actually work?</p>
+    <aside class="notes">The practical message is a design principle, and it is one I find directly relevant to interface design and to HCI: most attention-guiding techniques redirect. The authors also say why automated tutors struggle with this genre: the right intervention depends on the moment-to-moment history of the learner's movement. They end with the limits of generality, which leads into the critique.</aside>
+  </section>
+
+  <!-- 17 · Critique -->
+  <section class="slide">
+    <div class="meta"><span>Critical reading</span><span>Limits · click any line to edit</span></div>
+    <h2 class="title">What I would push back on.</h2>
+    <ul class="list">
+      <li data-edit="c1">Four dyads and a handful of chosen stills. No counts of how often each pattern occurred, no second coder.</li>
+      <li data-edit="c2">The headline lag, ~17 ms, is exactly one sample at 60 Hz. That is the instrument's resolution, not a measured anticipation.</li>
+      <li data-edit="c3">In two dyads the tutor is the first author, who knows the hypothesis. In the other two the tutor learned the task minutes earlier.</li>
+      <li data-edit="c4">“Seeing it as isosceles” is read off a saccade pattern. The same pattern could be checking, habit, or boredom.</li>
+      <li data-edit="c5">“Reframing beats redirecting” rests on one success and one failure, with no redirecting condition and no learning measure.</li>
+      <li data-edit="c6">Vygotsky wrote about children's development; these are adults in a lab doing a designed task for a few minutes.</li>
+    </ul>
+    <aside class="notes">Starting points; rewrite them in your own words, they save automatically in this browser. The second point is the sharpest technically: with 60 Hz sampling and a 30 Hz scene video, a one-sample lag cannot distinguish prediction from perfect tracking. The authors themselves call the evidence idiosyncratic to their lab setting. A fair counterpoint to keep ready: the paper's stated aim is a method and an exemplification, not an effect size.</aside>
+  </section>
+
+  <!-- 18 · Discussion -->
+  <section class="slide dark">
+    <div class="meta"><span>Discussion</span><span>Click a question to edit</span></div>
+    <h2 class="title">Questions for the room.</h2>
+    <ol class="qs">
+      <li data-edit="q1">The tutor's gaze follows within 17–60 ms. Is she predicting the student, or just tracking a moving object like anyone would?</li>
+      <li data-edit="q2">Can an eye-movement pattern show what someone understands, or only where they look?</li>
+      <li data-edit="q3">Interfaces guide attention with highlights and arrows. When does a cue help, and when does it replace the seeing?</li>
+      <li data-edit="q4">Could an AI tutor with an eye tracker find the “micro-zone”? What would it need besides gaze?</li>
+    </ol>
+    <p class="src">Other readings this week: Zhaoping (2026), vision as looking and seeing through a bottleneck · Korda et al. (2024), eye behaviour coupled to imagery · Wynn et al. (2020), gaze reinstatement · Takamura et al. (2026), eye movements in aphantasia.</p>
+    <aside class="notes">Replace with your own questions before class. Q1 and Q2 are methodological. Q3 and Q4 are where the paper meets design and HCI. Bridge to the other readings: Zhaoping separates looking from seeing at the level of the visual system; this paper separates them at the level of culture. Korda et al. describe eyes coupled to one's own imagery; here the tutor's eyes are coupled to someone else's action.</aside>
+  </section>
+
+  <!-- 19 · End -->
+  <section class="slide">
+    <div class="meta"><span>Reference</span><span>Thank you</span></div>
+    <div class="spacer"></div>
+    <h2 class="statement">Two people can look at one triangle and see two different things.</h2>
+    <p class="lede">Teaching, on this account, is waiting for the moment when one question closes the gap.</p>
+    <div class="spacer"></div>
+    <p class="label" style="max-width:1500px">Shvarts, A., &amp; Abrahamson, D. (2019). Dual-eye-tracking Vygotsky: A microgenetic account of a teaching/learning collaboration in an embodied-interaction technological tutorial for mathematics. <i>Learning, Culture and Social Interaction, 22</i>, 100316. https://doi.org/10.1016/j.lcsi.2019.05.003 · All gaze animations are schematic reconstructions; no figure is reproduced from the paper.</p>
+    <aside class="notes">One-line takeaway, then open the floor.</aside>
+  </section>
+
+</main>
+
+<script src="../shared/deck.js"></script>
+<script>
+(() => {
+  const { $, $$, seg, loop, pt, css } = Deck;
+  const NS = "http://www.w3.org/2000/svg";
+  const el = (tag, attrs = {}, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const STU = "#FFC61A", TUT = "#FF5A5A", GREEN = "#2DBE6C", BLUE = "#2F6BFF";
+  const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
+  const lerp = (a, b, k) => ({ x: a.x + (b.x - a.x) * k, y: a.y + (b.y - a.y) * k });
+
+  /* ---------- the parabola task: A is the focus, B sits under C on the directrix ---------- */
+  function geometry(w, h, focusUp = 120) {
+    const A = { x: w / 2, y: h - 50 - focusUp }, dirY = h - 50, f = focusUp / 2;
+    return {
+      A, dirY,
+      B: C => ({ x: C.x, y: dirY }),
+      curveY: x => (A.y + f) - (x - A.x) ** 2 / (4 * f),
+      err: C => dist(C, A) - (dirY - C.y),
+      green: (C, tol = 9) => C.y < dirY - 4 && Math.abs(dist(C, A) - (dirY - C.y)) < tol
+    };
+  }
+  function drawTriangle(x, g, C, opt = {}) {
+    const B = g.B(C), on = g.green(C, opt.tol);
+    x.beginPath(); x.moveTo(g.A.x, g.A.y); x.lineTo(B.x, B.y); x.lineTo(C.x, C.y); x.closePath();
+    x.fillStyle = on ? GREEN : BLUE; x.globalAlpha = .9; x.fill(); x.globalAlpha = 1;
+    return on;
+  }
+  /* a gaze path drawn the way the paper draws it: last 2 s, one dot per sample, circle at "now" */
+  function drawTrail(x, trail, now, col, span = 2000) {
+    while (trail.length && now - trail[0].t > span) trail.shift();
+    if (!trail.length) return;
+    x.lineWidth = 2; x.strokeStyle = col; x.fillStyle = col;
+    for (let i = 1; i < trail.length; i++) {
+      x.globalAlpha = .15 + .75 * (1 - (now - trail[i].t) / span);
+      x.beginPath(); x.moveTo(trail[i - 1].x, trail[i - 1].y); x.lineTo(trail[i].x, trail[i].y); x.stroke();
+      x.beginPath(); x.arc(trail[i].x, trail[i].y, 3, 0, 7); x.fill();
+    }
+    x.globalAlpha = 1; const p = trail[trail.length - 1];
+    x.lineWidth = 4; x.beginPath(); x.arc(p.x, p.y, 17, 0, 7); x.stroke();
+  }
+
+  /* ---------- schematic gaze simulations for phases 1–3 ---------- */
+  function sim(cv, phase) {
+    const x = cv.getContext("2d"), W = cv.width, H = cv.height, g = geometry(W, H);
+    const trails = { stu: [], tut: [] }; let t = 0, show = "both";
+    const Cat = tt => {
+      if (phase === 1) return { x: W / 2 + 390 * Math.sin(tt / 2300) * Math.cos(tt / 5100), y: 290 + 190 * Math.sin(tt / 1500 + 1) };
+      const px = W / 2 + 350 * Math.sin(tt / (phase === 2 ? 2700 : 1900));
+      return { x: px, y: g.curveY(px) + (phase === 2 ? 12 * Math.sin(tt / 240) : 0) };
+    };
+    const mid = C => lerp(g.A, g.B(C), .5);
+    /* a saccade cycle: hop between moving targets, ~40 ms in flight, then fixate */
+    const cycler = (targets, fix) => { let i = 0, t0 = 0; return (tt, C) => { if (tt - t0 > fix) { i = (i + 1) % targets.length; t0 = tt; } const a = targets[(i + targets.length - 1) % targets.length](C), b = targets[i](C); return lerp(a, b, Math.min(1, (tt - t0) / 40)); }; };
+    const medianScan = cycler([C => C, mid], 250), sidesScan = cycler([C => C, () => g.A, C => g.B(C)], 230), stuScan = cycler([C => C, mid], 270);
+    let ahead = null;
+    function gaze(tt) {
+      const C = Cat(tt), j = () => (Math.random() - .5) * 5; let s, u;
+      if (phase === 1) {
+        const k = tt % 6000;                       // every 6 s the student looks ahead for 600 ms
+        if (k > 3600 && k < 4200) { ahead = ahead || Cat(tt + 1300); s = ahead; u = Cat(tt - 60); }
+        else { ahead = null; s = C; u = Cat(tt - (k >= 4200 && k < 4700 ? 260 : 60)); }
+      } else if (phase === 2) { s = C; u = medianScan(tt, C); }
+      else { s = stuScan(tt, C); u = sidesScan(tt, C); }
+      return { C, s: { x: s.x + j(), y: s.y + j() }, u: { x: u.x + j(), y: u.y + j() } };
+    }
+    const l = loop((_, dt) => {
+      const steps = Math.max(1, Math.round(dt / 16.7));
+      let G; for (let i = 0; i < steps; i++) { t += 16.7; G = gaze(t); trails.stu.push({ ...G.s, t }); trails.tut.push({ ...G.u, t }); }
+      x.fillStyle = "#000"; x.fillRect(0, 0, W, H);
+      drawTriangle(x, g, G.C, { tol: 16 });
+      if (show !== "stu") drawTrail(x, trails.tut, t, TUT);
+      if (show !== "tut") drawTrail(x, trails.stu, t, STU);
+    });
+    return { start: l.start, stop: l.stop, show(v) { show = v; } };
+  }
+  [1, 2, 3].forEach(p => { const s = sim($(`#p${p}Cv`), p); seg($(`[data-seg="p${p}"]`), s.show); Deck.on("p" + p, { enter: s.start, leave: s.stop }); });
+  (() => { const s = sim($("#coverCv"), 3); Deck.on("cover", { enter: s.start, leave: s.stop }); })();
+
+  /* ---------- slide 4: novice vs expert on a line graph ---------- */
+  (() => {
+    const svg = $("#graphSvg"), ink = "var(--ink)";
+    el("path", { d: "M90 30 V400 H780", fill: "none", stroke: ink, "stroke-width": 3 }, svg);
+    for (let i = 1; i <= 6; i++) { el("line", { x1: 90 + i * 100, y1: 400, x2: 90 + i * 100, y2: 410, stroke: ink, "stroke-width": 2 }, svg); if (i <= 3) el("line", { x1: 80, y1: 400 - i * 100, x2: 90, y2: 400 - i * 100, stroke: ink, "stroke-width": 2 }, svg); }
+    el("path", { d: "M90 330 L760 95", stroke: ink, "stroke-width": 5, fill: "none" }, svg);
+    const t = el("text", { x: 770, y: 440, "text-anchor": "end", "font-family": "IBM Plex Mono", "font-size": 18, fill: "var(--mute)" }, svg); t.textContent = "x";
+    const groups = {};
+    const fx = (name, col, pts) => { const gq = el("g", { class: "fx" }, svg); pts.forEach(([x, y, r], i) => { if (i) el("line", { x1: pts[i - 1][0], y1: pts[i - 1][1], x2: x, y2: y, stroke: col, "stroke-width": 2, opacity: .7 }, gq); el("circle", { cx: x, cy: y, r, fill: col, opacity: .45 }, gq); el("circle", { cx: x, cy: y, r: 4, fill: col }, gq); }); groups[name] = gq; };
+    fx("nov", "#C8102E", [[430, 205, 30], [470, 195, 22], [445, 215, 34], [500, 180, 20], [460, 190, 28], [520, 178, 18], [745, 100, 26]]);
+    fx("exp", "#0A7F45", [[92, 330, 30], [290, 260, 20], [490, 190, 20], [490, 260, 16], [290, 400, 18], [490, 400, 18], [92, 400, 22]]);
+    seg($('[data-seg="who"]'), v => { for (const k in groups) groups[k].style.opacity = k === v ? 1 : 0; })("nov");
+  })();
+
+  /* ---------- slide 5: Mathematics Imagery Trainer, ratio 1:2 ---------- */
+  (() => {
+    const cv = $("#mitCv"), x = cv.getContext("2d"), W = cv.width, H = cv.height, base = H - 40;
+    const hands = [{ x: W * .33, h: 150 }, { x: W * .67, h: 190 }]; let grab = -1;
+    function draw() {
+      const ok = Math.abs(hands[1].h - 2 * hands[0].h) < 16;
+      x.fillStyle = ok ? "#1E9E57" : "#B3261E"; x.fillRect(0, 0, W, H);
+      x.fillStyle = "rgba(0,0,0,.35)"; x.fillRect(0, base, W, H - base);
+      hands.forEach(hd => { const y = base - hd.h; x.strokeStyle = "#fff"; x.lineWidth = 5; x.beginPath(); x.moveTo(hd.x - 34, y); x.lineTo(hd.x + 34, y); x.moveTo(hd.x, y - 34); x.lineTo(hd.x, y + 34); x.stroke(); x.beginPath(); x.arc(hd.x, y, 20, 0, 7); x.stroke(); });
+    }
+    cv.addEventListener("pointerdown", e => { const p = pt(e, cv); grab = p.x < W / 2 ? 0 : 1; cv.setPointerCapture(e.pointerId); move(e); });
+    const move = e => { if (grab < 0) return; hands[grab].h = Math.max(10, Math.min(base - 30, base - pt(e, cv).y)); draw(); };
+    cv.addEventListener("pointermove", move);
+    cv.addEventListener("pointerup", () => { grab = -1; });
+    Deck.on("mit", { enter: draw });
+  })();
+
+  /* ---------- slide 10: mouse as an eye ---------- */
+  (() => {
+    const cv = $("#trailCv"), x = cv.getContext("2d"), trail = []; let p = null, t = 0, acc = 0;
+    cv.addEventListener("pointermove", e => { p = pt(e, cv); });
+    cv.addEventListener("pointerleave", () => { p = null; });
+    const l = loop((_, dt) => {
+      acc += dt; while (acc >= 16.7) { acc -= 16.7; t += 16.7; if (p) trail.push({ x: p.x, y: p.y, t }); }
+      x.fillStyle = "#000"; x.fillRect(0, 0, cv.width, cv.height);
+      if (!trail.length && !p) { x.fillStyle = "#9DA3AC"; x.font = "400 24px 'IBM Plex Mono', monospace"; x.textAlign = "center"; x.fillText("move the mouse here: rest, follow, jump", cv.width / 2, cv.height / 2); }
+      drawTrail(x, trail, t, STU);
+      $("#trailRead").textContent = `${trail.length} samples on screen · 60 per second · 2 s window`;
+    });
+    Deck.on("trail", { enter: l.start, leave: l.stop });
+  })();
+
+  /* ---------- slide 9: the task itself ---------- */
+  (() => {
+    const cv = $("#taskCv"), x = cv.getContext("2d"), W = cv.width, H = cv.height, g = geometry(W, H, 220);
+    let C = { x: W / 2 + 260, y: 300 }, drag = false, trace = [], streak = 0, best = 0;
+    const opt = { trace: false, geo: false, axes: false };
+    const gazeTrail = []; let gazeOn = false, clock = 0;
+    function draw() {
+      x.fillStyle = "#000"; x.fillRect(0, 0, W, H);
+      if (opt.axes) {
+        x.strokeStyle = "#5B6068"; x.lineWidth = 2; x.beginPath(); x.moveTo(0, g.dirY); x.lineTo(W, g.dirY); x.moveTo(g.A.x, 0); x.lineTo(g.A.x, H); x.stroke();
+        x.fillStyle = "#9DA3AC"; x.font = "400 20px 'IBM Plex Mono', monospace"; x.textAlign = "left";
+        x.fillText("x = " + Math.round((C.x - g.A.x) / 10), C.x + 8, g.dirY + 28); x.fillText("y = " + Math.round((g.dirY - C.y) / 10), g.A.x + 10, C.y - 8);
+        x.setLineDash([4, 6]); x.beginPath(); x.moveTo(g.A.x, C.y); x.lineTo(C.x, C.y); x.stroke(); x.setLineDash([]);
+      }
+      if (opt.trace) { x.fillStyle = "#EEF0F2"; trace.forEach(p => { x.beginPath(); x.arc(p.x, p.y, 3.5, 0, 7); x.fill(); }); }
+      const on = drawTriangle(x, g, C), B = g.B(C);
+      if (opt.geo) {
+        x.setLineDash([10, 8]); x.strokeStyle = "#EEF0F2"; x.lineWidth = 2; x.beginPath(); x.moveTo(0, g.dirY); x.lineTo(W, g.dirY); x.stroke(); x.setLineDash([]);
+        x.lineWidth = 5; x.strokeStyle = "#FFC61A"; x.beginPath(); x.moveTo(C.x, C.y); x.lineTo(g.A.x, g.A.y); x.stroke(); x.beginPath(); x.moveTo(C.x, C.y); x.lineTo(B.x, B.y); x.stroke();
+        x.fillStyle = "#EEF0F2"; x.font = "500 24px 'IBM Plex Mono', monospace"; x.textAlign = "center";
+        x.fillText("A", g.A.x - 22, g.A.y + 8); x.fillText("B", B.x, B.y + 32); x.fillText("C", C.x, C.y - 22);
+        x.fillText("AC = " + Math.round(dist(C, g.A)), (C.x + g.A.x) / 2 - 70, (C.y + g.A.y) / 2);
+        x.fillText("BC = " + Math.round(g.dirY - C.y), C.x + 80, (C.y + B.y) / 2);
+      }
+      x.fillStyle = "#fff"; x.beginPath(); x.arc(C.x, C.y, 12, 0, 7); x.fill();
+      if (gazeOn) drawTrail(x, gazeTrail, performance.now(), STU);
+      return on;
+    }
+    const l = loop((_, dt) => {
+      clock += dt; const on = draw();
+      if (on && drag) { streak += dt; best = Math.max(best, streak); } else if (!on) streak = 0;
+      $("#tRead").textContent = `green for ${(streak / 1000).toFixed(1)} s · best ${(best / 1000).toFixed(1)} s`;
+    });
+    cv.addEventListener("pointerdown", e => { drag = true; cv.setPointerCapture(e.pointerId); mv(e); });
+    const mv = e => { if (!drag) return; const p = pt(e, cv); C = { x: Math.max(10, Math.min(W - 10, p.x)), y: Math.max(10, Math.min(g.dirY - 6, p.y)) }; if (g.green(C) && (!trace.length || dist(trace[trace.length - 1], C) > 7)) trace.push({ ...C }); };
+    cv.addEventListener("pointermove", mv);
+    cv.addEventListener("pointerup", () => { drag = false; });
+    const toggle = (id, key) => { const b = $(id); b.onclick = () => { opt[key] = !opt[key]; b.setAttribute("aria-pressed", String(opt[key])); }; };
+    toggle("#tTrace", "trace"); toggle("#tGeo", "geo"); toggle("#tAxes", "axes");
+    $("#tReset").onclick = () => { trace = []; streak = best = 0; C = { x: W / 2 + 260, y: 300 }; };
+
+    /* optional: webcam gaze estimate with WebGazer (loaded only on request) */
+    const gb = $("#tGaze"), msg = $("#tGazeMsg");
+    function loadScript(src) { return new Promise((ok, no) => { const s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = no; document.head.appendChild(s); }); }
+    async function gazeStart() {
+      msg.textContent = "loading WebGazer…";
+      try {
+        if (!window.webgazer) await loadScript("https://webgazer.cs.brown.edu/webgazer.js").catch(() => loadScript("https://cdn.jsdelivr.net/npm/webgazer@2.1.0/dist/webgazer.min.js"));
+        const wg = window.webgazer; wg.showVideoPreview(false).showPredictionPoints(false);
+        wg.setGazeListener(d => { if (!d || !gazeOn) return; const r = cv.getBoundingClientRect(); gazeTrail.push({ x: (d.x - r.left) * W / r.width, y: (d.y - r.top) * H / r.height, t: performance.now() }); });
+        await wg.begin(); gazeOn = true; gb.setAttribute("aria-pressed", "true");
+        msg.textContent = "calibrate: look at the white corner and click it in 8–10 different places";
+      } catch (err) { gazeOn = false; gb.setAttribute("aria-pressed", "false"); msg.textContent = "webcam gaze unavailable (camera blocked or offline)"; }
+    }
+    function gazeStop() { gazeOn = false; gazeTrail.length = 0; gb.setAttribute("aria-pressed", "false"); msg.textContent = ""; try { window.webgazer && window.webgazer.pause(); } catch { /* not started */ } }
+    gb.onclick = () => { if (gazeOn) gazeStop(); else if (window.webgazer && window.webgazer.isReady && window.webgazer.isReady()) { window.webgazer.resume(); gazeOn = true; gb.setAttribute("aria-pressed", "true"); } else gazeStart(); };
+    Deck.on("task", { enter: l.start, leave() { l.stop(); if (gazeOn) gazeStop(); } });
+  })();
+
+  Deck.start();
+})();
+</script>
+</html>
