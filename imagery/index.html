@@ -248,7 +248,7 @@
       <div class="stack">
         <ul class="list">
           <li><b>Until 2008: questionnaires.</b> Vividness ratings, since Galton (1880). <small>What we did on slide 2.</small></li>
-          <li data-step="1"><b>The trick:</b> show a different pattern to each eye and only one is seen at a time. Imagining one beforehand makes it <b>win more often than 50%</b>.</li>
+          <li data-step="1"><b>The trick:</b> show a different pattern to each eye and only one is seen at a time. Imagining one beforehand makes it <b>more likely to be the one you see</b>.</li>
           <li data-step="2">The bias <b>tracks vividness</b>, trial by trial and person by person, and survives a demanding task in between.</li>
           <li data-step="3"><b>Not just attention:</b> imagery and attention differ in their timing and in how easily sensory input disrupts them.</li>
           <li data-step="4"><b>Also objective:</b> fMRI decoding, and pupil size, which follows the brightness of what is imagined.</li>
@@ -256,7 +256,7 @@
       </div>
     </div>
     <p class="src">Pearson, Clifford &amp; Tong (2008); Laeng &amp; Sulutvedt (2014), as reviewed in Pearson (2019), Box 2.</p>
-    <aside class="notes">Run one trial with the room so they feel the structure: a letter tells you what to imagine, six seconds of imagining, then a brief flash of both patterns and a forced choice. Be honest that a projector cannot produce rivalry, because both eyes get the same image, and that the durations here are my demo values, not the paper's. The dependent variable is how often the imagined pattern dominates; chance is 50 percent. This is the paper's key methodological move and the measure behind most of its strong claims, including the ones on aphantasia. Worth flagging: it is also the author's own method.</aside>
+    <aside class="notes">Run one trial with the room so they feel the structure: a letter tells you what to imagine, six seconds of imagining, then a brief flash of both patterns and a forced choice. Be honest that a projector cannot produce rivalry, because both eyes get the same image, and that the durations here are my demo values, not the paper's. The dependent variable is how often the imagined pattern dominates. This is the paper's key methodological move and the measure behind most of its strong claims, including the ones on aphantasia. Worth flagging: it is also the author's own method.</aside>
   </section>
 
   <!-- 9 · Weak perception -->
@@ -266,7 +266,7 @@
     <div class="cols c4" style="flex:0">
       <div class="cell"><span class="n">It primes</span><p>Imagining a pattern <b>biases what you see next</b>, like a faint real stimulus would.</p></div>
       <div class="cell" data-step="1"><span class="n">It trains</span><p>Practising on imagined lines <b>improves real visual sensitivity</b> to them.</p></div>
-      <div class="cell" data-step="2"><span class="n">It conditions</span><p>Fear learned to an imagined stimulus <b>transfers to the real one</b>.</p></div>
+      <div class="cell" data-step="2"><span class="n">It conditions</span><p>An emotional association learned to an imagined stimulus <b>transfers to the real one</b>.</p></div>
       <div class="cell" data-step="3"><span class="n">It moves the pupil</span><p>Imagined brightness <b>changes pupil size</b> with no light change.</p></div>
     </div>
     <div class="cols" style="grid-template-columns: 1fr 560px; align-items:center" data-step="4">
@@ -396,7 +396,7 @@
       <div class="stack" data-step="1">
         <h3 class="h3">Aphantasia</h3>
         <ul class="list tight">
-          <li><b>Not a reporting problem:</b> no rivalry priming either, so the sensory signal itself is missing.</li>
+          <li><b>Not just a reporting problem:</b> they also score significantly lower on the rivalry measure, so sensory strength itself is lacking.</li>
           <li><b>“What” is gone, “where” is intact:</b> spatial imagery scores are normal, even slightly higher.</li>
           <li><b>Life goes on:</b> working memory, episodic memory, and often visual dreams.</li>
           <li><b>Unknown:</b> the low end of a spectrum, or a category of its own?</li>
@@ -412,7 +412,7 @@
         <p class="body second" data-step="3"><b>If people manage without it, imagery is not fundamental to cognition.</b> It is a strategy.</p>
       </div>
     </div>
-    <aside class="notes">Bring back the room's distribution. Then aphantasia: named by Zeman in 2015. The key result is that people with aphantasia show no priming on binocular rivalry, so it is not only poor metacognition. The dissociation between object and spatial imagery mirrors the ventral and dorsal streams from slide 6. Hyperphantasia gets half a page in the paper because there is very little recent research. The closing implication is the 'unnecessary' in the abstract.</aside>
+    <aside class="notes">Bring back the room's distribution. Then aphantasia: named by Zeman in 2015. The key result is that people with aphantasia score significantly lower on the binocular rivalry measure, so it is more than poor metacognition. The dissociation between object and spatial imagery mirrors the ventral and dorsal streams from slide 6. Hyperphantasia gets half a page in the paper because there is very little recent research. The closing implication is the 'unnecessary' in the abstract.</aside>
   </section>
 
   <!-- 15 · Paper's discussion -->
@@ -650,7 +650,7 @@
       clear(); phase(0); say(red ? "R" : "G", red ? "imagine red horizontal stripes" : "imagine green vertical stripes");
       at(1000, () => { phase(1); let s = 6; say("Imagine it", s + " s"); for (let k = 1; k < 6; k++) at(k * 1000, () => say("Imagine it", (6 - k) + " s")); });
       at(7000, () => { phase(2); say(""); grating("#D01818", true); grating("#12A82C", false); });
-      at(7750, () => { clear(); phase(3); say("Which one did you see more of?", `you imagined ${red ? "red" : "green"} · chance is 50%`); go.disabled = false; });
+      at(7750, () => { clear(); phase(3); say("Which one did you see more of?", `you imagined ${red ? "red" : "green"}`); go.disabled = false; });
     };
     Deck.on("rivalry", { enter: reset, leave: reset });
   })();
