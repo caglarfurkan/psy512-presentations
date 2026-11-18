@@ -176,7 +176,7 @@
         <p class="body" data-step="4" style="color:var(--mute)">Why V1? It is laid out like a map of the visual field. Activity there during imagery would mean a picture-like format.</p>
       </div>
     </div>
-    <aside class="notes">Toggle between the two formats. Depictive means the representation has a functional space: distances in the representation correspond to distances in the thing. Propositional means a language-like description. The debate is the reason so many studies fixated on V1. Pearson treats it as settled, which frees the review to ask about mechanism and individual differences. Note for discussion later: 'the debate is over' is the author's own 2015 claim.</aside>
+    <aside class="notes">Toggle between the two formats. Depictive means the representation has a functional space: distances in the representation correspond to distances in the thing. Propositional means a language-like description. The debate is the reason so many studies fixated on V1. Pearson treats it as settled, which frees the review to ask about mechanism and individual differences. If asked: 'the debate is over' is the author's own 2015 claim.</aside>
   </section>
 
   <!-- 5 · Reverse hierarchy -->
@@ -461,7 +461,7 @@
         </ul>
       </div>
     </div>
-    <aside class="notes">This is the paper's own discussion section. The claim is strong: imagery is 'the key to understanding normal visual perception' because it isolates feedback. Then read the open questions; several of them are picked up by this week's other readings, which is the next slide.</aside>
+    <aside class="notes">This is the paper's own discussion section. The claim is strong: imagery is 'the key to understanding normal visual perception' because it isolates feedback. Then read the open questions and move on to the forum questions.</aside>
   </section>
 
   <!-- 22 · End -->
@@ -634,7 +634,8 @@
     go.onclick = () => {
       go.disabled = true; const red = Math.random() < .5; const at = (ms, fn) => timers.push(setTimeout(fn, ms));
       clear(); phase(0); say(red ? "R" : "G", red ? "imagine red horizontal stripes" : "imagine green vertical stripes");
-      at(3000, () => { phase(1); say("Imagine it", "6 s"); for (let k = 1; k < 6; k++) at(3000 + k * 1000, () => say("Imagine it", (6 - k) + " s")); });
+      at(3000, () => { phase(1); say("Imagine it", "6 s"); });
+      for (let k = 1; k < 6; k++) at(3000 + k * 1000, () => say("Imagine it", (6 - k) + " s"));   // 5…1 s, all timed from the click
       at(9000, () => { phase(2); say(""); grating("#D01818", true); grating("#12A82C", false); });
       at(9750, () => { clear(); phase(3); say("Which one did you see more of?", `you imagined ${red ? "red" : "green"}`); go.disabled = false; });
     };
