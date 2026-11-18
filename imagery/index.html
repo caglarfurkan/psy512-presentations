@@ -41,7 +41,7 @@
   .timeline b { font: 750 44px/1 var(--display); font-stretch: 75%; display: block; }
   .timeline span { font: 400 25px/1.32 var(--body); color: var(--mute); }
 
-  .hier svg { width: 1664px; height: 430px; display: block; overflow: visible; }
+  .hier svg { width: 1664px; height: 360px; display: block; overflow: visible; }
   .hier text { font-family: var(--mono); font-size: 26px; fill: var(--ink); text-anchor: middle; }
   .hier .sub { fill: var(--mute); font-size: 21px; }
   .hier .node { fill: var(--card); stroke: var(--ink); stroke-width: 3; transition: fill .4s, opacity .4s; }
@@ -67,7 +67,7 @@
   #boardPresets .chip { font-size: 21px; padding: 10px 12px; }
   .board { width: 700px; height: 525px; image-rendering: pixelated; background: #111; }
 
-  .cog svg { width: 780px; height: 676px; display: block; }
+  .cog svg { width: 690px; height: 598px; display: block; }
   .cog .zone { fill: var(--accent); }
   .cog .nd { cursor: pointer; }
   .cog .nd rect { fill: var(--card); stroke: var(--ink); stroke-width: 2; }
@@ -140,7 +140,7 @@
   <!-- 3 · What kind of paper -->
   <section class="slide">
     <div class="meta"><span>The paper</span><span>A narrative review, not an experiment</span></div>
-    <h2 class="title">One claim, five parts.</h2>
+    <h2 class="title">Structure of the review.</h2>
     <p class="lede">Imagery can be <span class="accent">advantageous</span>, <span class="accent">unnecessary</span>, and even <span class="accent">clinically disruptive</span>. How can one ability be all three?</p>
     <div class="spacer"></div>
     <div class="road">
@@ -158,7 +158,7 @@
   <!-- 4 · Imagery debate -->
   <section class="slide" data-hook="debate">
     <div class="meta"><span>Background · Box 1</span><span>The imagery debate, 1970s–2000s</span></div>
-    <h2 class="title">Does the brain draw a picture, or write a sentence?</h2>
+    <h2 class="title">The imagery debate: depictive or propositional?</h2>
     <div class="cols" style="grid-template-columns: 640px 1fr">
       <div class="stack">
         <div class="seg" data-seg="fmt"><button data-v="dep" aria-pressed="true">Depictive</button><button data-v="pro">Propositional</button></div>
@@ -182,7 +182,7 @@
   <!-- 5 · Reverse hierarchy -->
   <section class="slide" data-hook="hier">
     <div class="meta"><span>1 · Neural mechanisms · Fig. 1 and 2</span><span>A reverse visual hierarchy</span></div>
-    <h2 class="title">Imagery is vision running in reverse.</h2>
+    <h2 class="title">Voluntary imagery as a reverse visual hierarchy.</h2>
     <div class="row" style="justify-content:space-between">
       <div class="seg" data-seg="dir"><button data-v="per" aria-pressed="true">Perception · bottom-up</button><button data-v="img">Imagery · top-down</button></div>
       <span class="label" id="hierCap"></span>
@@ -204,7 +204,7 @@
   <!-- 6 · V1 evidence -->
   <section class="slide">
     <div class="meta"><span>1 · Neural mechanisms</span><span>The early visual cortex</span></div>
-    <h2 class="title">Does imagining light up V1? Twenty-five years of “sometimes”.</h2>
+    <h2 class="title">Imagery and the early visual cortex (V1).</h2>
     <div class="cols c2">
       <div class="stack">
         <div class="big">20+<small>fMRI / PET studies, 1990s–2000s</small></div>
@@ -229,7 +229,7 @@
   <!-- 7 · Involuntary imagery -->
   <section class="slide" data-hook="neon">
     <div class="meta"><span>1 · Neural mechanisms · Fig. 3</span><span>Try it</span></div>
-    <h2 class="title">Not every image is one you asked for.</h2>
+    <h2 class="title">Voluntary and involuntary imagery.</h2>
     <div class="cols" style="grid-template-columns: 640px 1fr">
       <div class="stack" style="gap:14px">
         <div class="neon"><svg id="neonSvg" viewBox="0 0 760 520"></svg></div>
@@ -256,7 +256,7 @@
   <!-- 8 · Measurement -->
   <section class="slide" data-hook="rivalry">
     <div class="meta"><span>Method · Box 2</span><span>Try it · binocular rivalry priming</span></div>
-    <h2 class="title">How do you measure a picture only one person can see?</h2>
+    <h2 class="title">Measuring imagery objectively.</h2>
     <div class="cols" style="grid-template-columns: 560px 1fr">
       <div class="stack" style="gap:14px">
         <div class="trial" id="trial"><canvas id="trialCv" width="560" height="560"></canvas><div class="msg" id="trialMsg">Ready<small>one trial takes about 11 seconds</small></div></div>
@@ -280,7 +280,7 @@
   <!-- 9 · Weak perception -->
   <section class="slide">
     <div class="meta"><span>2 · Findings</span><span>Imagery and perception</span></div>
-    <h2 class="title">Imagery behaves like a weak form of perception.</h2>
+    <h2 class="title">Imagery as a weak form of perception.</h2>
     <div class="cols c4" style="flex:0">
       <div class="cell"><span class="n">It primes</span><p>Imagining a pattern <b>biases what you see next</b>, like a faint real stimulus would.</p></div>
       <div class="cell" data-step="1"><span class="n">It trains</span><p>Practising on imagined lines <b>improves real visual sensitivity</b> to them.</p></div>
@@ -310,7 +310,7 @@
   <!-- 10 · Blackboard -->
   <section class="slide dark" data-hook="board">
     <div class="meta"><span>1 · Neural mechanisms · Fig. 4</span><span>Try it</span></div>
-    <h2 class="title">Why is your image stronger than mine?</h2>
+    <h2 class="title">What makes imagery stronger or weaker?</h2>
     <div class="cols" style="grid-template-columns: 700px 1fr">
       <canvas class="board" id="boardCv" width="800" height="600" aria-label="A square on a noisy blackboard"></canvas>
       <div class="stack" style="gap:16px">
@@ -342,13 +342,13 @@
   <!-- 11 · Cognition map -->
   <section class="slide" data-hook="cog">
     <div class="meta"><span>3 · Imagery in everyday cognition · Fig. 5</span><span>Mental imagery and cognition</span></div>
-    <h2 class="title sm">If thinking borrows imagery, differences in imagery spread everywhere.</h2>
-    <div class="cols" style="grid-template-columns: 780px 1fr; gap:64px">
+    <h2 class="title">Imagery in everyday cognition.</h2>
+    <div class="cols" style="grid-template-columns: 690px 1fr; gap:64px">
       <div class="cog"><svg id="cogSvg" viewBox="0 0 900 780"></svg></div>
       <div class="stack" style="padding-top:20px">
         <div class="cell"><span class="n" id="cogZone">Pick one</span><h3 class="h3" id="cogName">What does the room expect?</h3><p id="cogNote" style="font-size:28px">Before clicking: which of these would be hardest without a mind's eye?</p></div>
         <div class="row label"><span><i style="display:inline-block;width:18px;height:18px;background:var(--accent);opacity:.55;vertical-align:-3px;margin-right:8px"></i>good evidence, beyond correlation</span><span><i style="display:inline-block;width:18px;height:18px;background:var(--accent);opacity:.16;vertical-align:-3px;margin-right:8px"></i>proposed, weaker evidence</span></div>
-        <p class="quote" data-step="1">You cannot fully understand any of these without measuring how strongly each person imagines.</p>
+        <p class="body" style="color:var(--mute)" data-step="1">Pearson's argument: if these processes use imagery, imagery strength should be measured alongside them.</p>
       </div>
     </div>
     <p class="src">Redrawn after Pearson (2019), Fig. 5. Quote paraphrased from p. 630.</p>
@@ -362,7 +362,7 @@
   <!-- 12 · VWM demo -->
   <section class="slide dark" data-hook="wm">
     <div class="meta"><span>3 · Imagery in everyday cognition</span><span>Try it · visual working memory</span></div>
-    <h2 class="title">Same task. Same answer. Different minds.</h2>
+    <h2 class="title">Visual working memory: imagery as one strategy.</h2>
     <div class="cols" style="grid-template-columns: 700px 1fr">
       <div class="stack" style="gap:14px">
         <div class="wm"><svg id="wmSvg" viewBox="0 0 700 560"></svg><div class="say" id="wmSay">Remember the tilt of each bar</div></div>
@@ -384,8 +384,8 @@
   <!-- 13 · Clinical -->
   <section class="slide">
     <div class="meta"><span>4 · Mental and neurological disorders</span><span>Bridge to Week 10</span></div>
-    <h2 class="title">The same ability, turned against its owner.</h2>
-    <p class="lede">Pictures move emotion more than words do. That makes imagery a symptom and a treatment.</p>
+    <h2 class="title">Imagery in mental and neurological disorders.</h2>
+    <p class="lede">Visual thought produces more emotion than verbal thought. Imagery appears both as a symptom and in treatment.</p>
     <div class="cols c2" style="margin-top:8px">
       <div class="stack">
         <h3 class="h3">As a symptom</h3>
@@ -413,7 +413,7 @@
   <!-- 14 · Extremes -->
   <section class="slide" data-hook="spec">
     <div class="meta"><span>5 · Extreme differences</span><span>Our room, from slide 2</span></div>
-    <h2 class="title">From a blind mind's eye to a photograph.</h2>
+    <h2 class="title">Extreme differences: aphantasia and hyperphantasia.</h2>
     <div>
       <div class="spec"><div class="bars" id="specBars"></div><div class="grad"></div></div>
       <div class="ends"><span>Aphantasia</span><span id="specN" style="color:var(--mute)"></span><span>Hyperphantasia</span></div>
@@ -435,7 +435,7 @@
           <li><b>Mostly in children:</b> estimates run from 0 to 11%.</li>
           <li><b>Almost no modern data:</b> never studied with psychophysics, fMRI or TMS.</li>
         </ul>
-        <p class="body second" data-step="3"><b>If people manage without it, imagery is not fundamental to cognition.</b> It is a strategy.</p>
+        <p class="body" style="color:var(--mute)" data-step="3">Pearson: using imagery as a cognitive tool is not fundamental to performing other cognitive functions.</p>
       </div>
     </div>
     <aside class="notes">Bring back the room's distribution. Then aphantasia: named by Zeman in 2015. The key result is that people with aphantasia score significantly lower on the binocular rivalry measure, so it is more than poor metacognition. The dissociation between object and spatial imagery mirrors the ventral and dorsal streams from slide 6. Hyperphantasia gets half a page in the paper because there is very little recent research. The closing implication is the 'unnecessary' in the abstract.</aside>
@@ -444,10 +444,10 @@
   <!-- 15 · Paper's discussion -->
   <section class="slide">
     <div class="meta"><span>Discussion in the paper</span><span>The future of imagery research</span></div>
-    <h2 class="title">Pearson's closing argument: imagery is the cleanest window onto feedback.</h2>
+    <h2 class="title">The future of imagery research.</h2>
     <div class="cols" style="grid-template-columns: 1fr 1fr">
       <div class="stack">
-        <p class="body">Seeing always mixes signals going <span class="second"><b>up</b></span> with signals coming <span class="accent"><b>down</b></span>. They cannot be pulled apart while the eyes are open.</p>
+        <p class="body">Seeing always mixes signals going <span class="second"><b>up</b></span> with signals coming <span class="accent"><b>down</b></span>. During perception the two are hard to separate.</p>
         <p class="body" data-step="1">Voluntary imagery is close to <b>feedback alone</b>, in sensory isolation. Study it, and you study the constructive half of perception.</p>
       </div>
       <div class="stack" data-step="2">
@@ -468,11 +468,10 @@
   <section class="slide">
     <div class="meta"><span>Reference</span><span>Thank you</span></div>
     <div class="spacer"></div>
-    <h2 class="statement">An image is a weak signal on a noisy board.</h2>
-    <p class="lede">How weak, and how noisy, is different for everyone in this room.</p>
+    <h2 class="statement">Thank you</h2>
     <div class="spacer"></div>
-    <p class="label" style="max-width:1500px">Pearson, J. (2019). The human imagination: the cognitive neuroscience of visual mental imagery. <i>Nature Reviews Neuroscience, 20</i>(10), 624–634. https://doi.org/10.1038/s41583-019-0202-9 · Figures redrawn as interactive schematics; none are reproduced from the paper.</p>
-    <aside class="notes">One-line takeaway, then open the floor.</aside>
+    <p class="label" style="max-width:1500px">Pearson, J. (2019). The human imagination: the cognitive neuroscience of visual mental imagery. <i>Nature Reviews Neuroscience, 20</i>(10), 624–634. https://doi.org/10.1038/s41583-019-0202-9 · Interactive schematics redrawn from the paper; original figures shown for teaching.</p>
+    <aside class="notes">Thank the room and open the floor.</aside>
   </section>
 
 </main>

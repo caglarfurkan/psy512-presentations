@@ -95,7 +95,7 @@
   <section class="slide">
     <div class="meta"><span>The paper</span><span>A qualitative case study with two eye trackers</span></div>
     <h2 class="title">When a tutor watches a student think, where do the tutor's eyes go?</h2>
-    <p class="lede">One eye tracker shows where a person looks. Two, on the same screen, show a relationship.</p>
+    <p class="lede">Dual eye tracking records two people's gaze on the same screen at the same time.</p>
     <div class="spacer"></div>
     <div class="road">
       <div><b>1</b><h3>Background</h3><p>Vygotsky, expert vision, embodied design, joint attention</p></div>
@@ -111,7 +111,7 @@
   <!-- 3 · Vygotsky -->
   <section class="slide">
     <div class="meta"><span>Background 1</span><span>Vygotsky's claim</span></div>
-    <h2 class="title">Learning is something two people do together.</h2>
+    <h2 class="title">Vygotsky: teaching/learning as collaboration.</h2>
     <div class="forms">
       <div class="f"><span class="label">Real form · naive</span><h3 class="h3">How the learner perceives and acts now</h3><p>In this task: the triangle turns green somewhere around here.</p></div>
       <div class="arrow">→</div>
@@ -129,7 +129,7 @@
   <!-- 4 · Looking is not seeing -->
   <section class="slide" data-hook="graph">
     <div class="meta"><span>Background 2</span><span>Education changes perception</span></div>
-    <h2 class="title">Looking is not seeing.</h2>
+    <h2 class="title">Expert and novice perception.</h2>
     <div class="cols" style="grid-template-columns: 820px 1fr">
       <div class="stack" style="gap:14px">
         <div class="graph"><svg id="graphSvg" viewBox="0 0 820 470"></svg></div>
@@ -140,7 +140,7 @@
           <li><b>Same picture, different objects.</b> Novices attend to a line's local details; experts to slope and intercepts.</li>
           <li data-step="1"><b>Showing learners an expert's gaze helps</b> in medicine and zoology: where to look.</li>
           <li data-step="2"><b>It does not help</b> in geometry and problem solving. There the hard part is <b>how to see</b>.</li>
-          <li data-step="3" class="accent"><b style="color:inherit">So an ideal form of perception cannot simply be pointed at.</b></li>
+          <li data-step="3">The authors suggest: learning <b>how to see</b> may need more than guidance on <b>where to look</b>.</li>
         </ul>
       </div>
     </div>
@@ -151,7 +151,7 @@
   <!-- 5 · Embodied design -->
   <section class="slide" data-hook="mit">
     <div class="meta"><span>Background 3</span><span>Try it · the Mathematics Imagery Trainer</span></div>
-    <h2 class="title">First learn the movement. Then name it.</h2>
+    <h2 class="title">Action-based embodied design.</h2>
     <div class="cols" style="grid-template-columns: 820px 1fr">
       <div class="stack" style="gap:12px">
         <canvas class="screen" id="mitCv" width="820" height="520" style="width:820px"></canvas>
@@ -182,7 +182,7 @@
           <li><b>Learning is better when the learner leads</b> joint attention and the adult follows.</li>
           <li><b>Experts and novices drift toward each other</b> when they play Tetris together.</li>
         </ul>
-        <p class="quote" data-step="3">The paper's strong claim: tutoring always rests on this silent sensorimotor coordination, even when nothing visible is happening.</p>
+        <p class="body" style="color:var(--mute)" data-step="3">The authors' hypothesis: tutoring relies on this sensorimotor coordination even when it is not visible.</p>
       </div>
     </div>
     <p class="src">Yu &amp; Smith (2016, 2017); Flanagan &amp; Johansson (2003); Tomasello &amp; Farrar (1986); Jermann et al. (2010), as reviewed in §2.4.</p>
@@ -206,7 +206,7 @@
   <!-- 8 · Method -->
   <section class="slide">
     <div class="meta"><span>Method</span><span>§3</span></div>
-    <h2 class="title">Two pairs of goggles, one screen.</h2>
+    <h2 class="title">Method: dual eye tracking.</h2>
     <div class="cols c2">
       <div class="stack">
         <ul class="list tight">
@@ -275,7 +275,7 @@
   <!-- 11 · Phase 1 -->
   <section class="slide dark" data-hook="p1">
     <div class="meta"><span>Results · Phase 1 of 4</span><span>Convergence</span></div>
-    <h2 class="title sm">The tutor's eyes ride on the student's hand.</h2>
+    <h2 class="title sm">Phase 1: the tutor's gaze follows the student's action.</h2>
     <div class="cols" style="grid-template-columns: 1040px 1fr">
       <div class="stack" style="gap:12px">
         <canvas class="screen" id="p1Cv" width="1100" height="640" style="width:1040px"></canvas>
@@ -288,7 +288,7 @@
           <li data-step="2"><b>The student's eyes plan:</b> jump ahead, wait ~600 ms, then the hand follows.</li>
           <li data-step="3"><b>At a surprise turn</b> the tutor falls 200–300 ms behind, then locks on again.</li>
         </ul>
-        <p class="body accent" data-step="4"><b>Joint attention comes out of joint action.</b> The student leads; the tutor is tuned to the real form.</p>
+        <p class="body" style="color:var(--mute)" data-step="4">Authors' reading: joint attention emerges from joint action, with the student leading.</p>
       </div>
     </div>
     <aside class="notes">In this phase the two gaze paths are nearly on top of each other. The authors' argument: a lag far shorter than saccadic reaction time means the tutor is anticipating, not reacting. The tutor is not reading the student's eyes; both are coupled to the same moving object, which acts like an extension of the student's body. Switch to student only to show the look-ahead: gaze goes to where the triangle will be moved. Keep in mind for the critique: 17 milliseconds is exactly one sample.</aside>
@@ -297,7 +297,7 @@
   <!-- 12 · Phase 2 -->
   <section class="slide dark" data-hook="p2">
     <div class="meta"><span>Results · Phase 2 of 4</span><span>Divergence</span></div>
-    <h2 class="title sm">Same triangle. The tutor starts seeing something else.</h2>
+    <h2 class="title sm">Phase 2: student and tutor gaze diverge.</h2>
     <div class="cols" style="grid-template-columns: 1040px 1fr">
       <div class="stack" style="gap:12px">
         <canvas class="screen" id="p2Cv" width="1100" height="640" style="width:1040px"></canvas>
@@ -310,7 +310,7 @@
           <li data-step="2"><span class="tut"><b style="color:inherit">Tutor:</b></span> quick back-and-forth saccades <b>along the median or a side</b>, restarting from wherever the student puts the corner.</li>
           <li data-step="3">An <b>“inert” attentional anchor</b>: the eye pattern of someone keeping it isosceles, without moving anything.</li>
         </ul>
-        <p class="body accent" data-step="4"><b>Out of sync in perception, still coupled in action.</b> One sees “green”, the other sees “isosceles”.</p>
+        <p class="body" style="color:var(--mute)" data-step="4">Authors' reading: the gazes are out of sync, but the tutor's gaze is still tied to the student's action.</p>
       </div>
     </div>
     <aside class="notes">This is the paper's most interesting observation. As soon as the triangle is green, the tutor's gaze stops following and starts measuring: saccades from the moving vertex down the median or along a side, as if checking the two equal lengths. The tutor is rehearsing how she would do it herself. Real and ideal forms now coexist in the same activity. The authors speculate about the function: the tutor keeps comparing the student's performance to the ideal and waits for the right moment to step in.</aside>
@@ -319,7 +319,7 @@
   <!-- 13 · Phase 3 -->
   <section class="slide dark" data-hook="p3">
     <div class="meta"><span>Results · Phase 3 of 4</span><span>Embodied discovery</span></div>
-    <h2 class="title sm">The student's eyes find a structure of their own.</h2>
+    <h2 class="title sm">Phase 3: the student develops an attentional anchor.</h2>
     <div class="cols" style="grid-template-columns: 1040px 1fr">
       <div class="stack" style="gap:12px">
         <canvas class="screen" id="p3Cv" width="1100" height="640" style="width:1040px"></canvas>
@@ -332,7 +332,7 @@
           <li data-step="2"><span class="stu"><b style="color:inherit">Student:</b></span> pursuit gives way to <b>repeating saccades</b> along the median or a side. An attentional anchor has formed.</li>
           <li data-step="3"><b>Not the tutor's pattern.</b> In one dyad the student runs the median while the tutor checks one side, then the other.</li>
         </ul>
-        <p class="body accent" data-step="4"><b>The environment did the teaching.</b> The student knows how, but cannot yet say what.</p>
+        <p class="body" style="color:var(--mute)" data-step="4">Authors' reading: the anchor came from the designed task, not direct instruction. It does not yet mean the student knows the rule.</p>
       </div>
     </div>
     <aside class="notes">The student arrives at an anchor through her own practice inside the designed task: Vygotsky's gardener. Important detail: the student's and tutor's anchors need not be the same pattern. What has to be shared in the end is the mathematical meaning, not the scan path. Having an anchor does not mean being aware of the rule, which is why phase 4 is needed.</aside>
@@ -341,7 +341,7 @@
   <!-- 14 · Phase 4 -->
   <section class="slide">
     <div class="meta"><span>Results · Phase 4 of 4</span><span>Conceptual discovery</span></div>
-    <h2 class="title sm">One question, asked at the right moment. Or too soon.</h2>
+    <h2 class="title sm">Phase 4: the tutor's prompt in two dyads.</h2>
     <div class="cols c2">
       <div class="stack">
         <span class="tag accent">Dyad 1 · it works</span>
@@ -363,7 +363,7 @@
         </div>
       </div>
     </div>
-    <p class="body" data-step="4" style="border-top:3px solid var(--ink); padding-top:16px"><b class="accent">Micro-zone of proximal development:</b> the moment when the body already has the solution and one prompt can turn it into a concept.</p>
+    <p class="body" data-step="4" style="border-top:3px solid var(--ink); padding-top:16px"><b class="accent">Micro-zone of proximal development:</b> the authors' term for the moment when the student moves fluently and a tutor's prompt can lead to the concept.</p>
     <p class="src">Dialogue shortened from the transcripts in §4.4.</p>
     <aside class="notes">Two cases make the argument. In the first, the student is fluent, has an anchor, and a question about 'the triangle' as a whole is enough: the concept was already there in action. In the second the tutor asks before the student has integrated the bottom of the curve into the same movement scheme; she gives a non-normative rule about an angle, and the tutor sends her back to practise. The authors read the failure as the tutor not attending to the student's micro-history. The term they introduce is the micro-zone of proximal development.</aside>
   </section>
@@ -371,7 +371,7 @@
   <!-- 15 · Model -->
   <section class="slide">
     <div class="meta"><span>Discussion in the paper</span><span>The model in one table</span></div>
-    <h2 class="title sm">Teaching and learning as one system with two pairs of eyes.</h2>
+    <h2 class="title sm">The authors' model across the four phases.</h2>
     <table class="model">
       <tr><th></th><th><small>Phase 1</small>Convergence</th><th><small>Phase 2</small>Divergence</th><th><small>Phase 3</small>Embodied discovery</th><th><small>Phase 4</small>Conceptual discovery</th></tr>
       <tr><td>Student's eyes</td><td>Follow the corner, plan ahead</td><td>Follow the corner</td><td>Own anchor: saccades along median or side</td><td>Stay on the anchor; look at the sides after naming the rule</td></tr>
@@ -387,13 +387,13 @@
   <!-- 16 · Implications -->
   <section class="slide">
     <div class="meta"><span>Discussion in the paper</span><span>Educational applications</span></div>
-    <h2 class="title">Reframe attention. Do not redirect it.</h2>
+    <h2 class="title">Educational implications.</h2>
     <div class="cols c3" style="flex:0">
       <div class="cell"><span class="n">For tutors</span><p><b>Watch the action before you speak.</b> The useful prompt works on what the learner is already looking at.</p></div>
       <div class="cell" data-step="1"><span class="n">For interface cues</span><p>Arrows, highlights and animations <b>move attention to a new place</b>. The paper suggests giving new meaning to the current place instead.</p></div>
       <div class="cell" data-step="2"><span class="n">For educational technology</span><p>Judge multiple screens and adaptive systems by whether they keep <b>a shared operational point</b>, which joint attention grows from.</p></div>
     </div>
-    <p class="quote" data-step="3" style="margin-top:40px">Open, by the authors' own account: when does this coupling arise, in which other settings, and how often does reframing actually work?</p>
+    <p class="body" data-step="3" style="margin-top:40px; color:var(--mute)">Open questions, by the authors' own account: when does this coupling arise, in which other settings, and how often does reframing actually work?</p>
     <aside class="notes">The practical message is a design principle, and it is one I find directly relevant to interface design and to HCI: most attention-guiding techniques redirect. The authors also say why automated tutors struggle with this genre: the right intervention depends on the moment-to-moment history of the learner's movement. They end with the limits of generality, which leads into the critique.</aside>
   </section>
 
@@ -401,11 +401,10 @@
   <section class="slide">
     <div class="meta"><span>Reference</span><span>Thank you</span></div>
     <div class="spacer"></div>
-    <h2 class="statement">Two people can look at one triangle and see two different things.</h2>
-    <p class="lede">Teaching, on this account, is waiting for the moment when one question closes the gap.</p>
+    <h2 class="statement">Thank you</h2>
     <div class="spacer"></div>
     <p class="label" style="max-width:1500px">Shvarts, A., &amp; Abrahamson, D. (2019). Dual-eye-tracking Vygotsky: A microgenetic account of a teaching/learning collaboration in an embodied-interaction technological tutorial for mathematics. <i>Learning, Culture and Social Interaction, 22</i>, 100316. https://doi.org/10.1016/j.lcsi.2019.05.003 · All gaze animations are schematic reconstructions; no figure is reproduced from the paper.</p>
-    <aside class="notes">One-line takeaway, then open the floor.</aside>
+    <aside class="notes">Thank the room and open the floor.</aside>
   </section>
 
 </main>
