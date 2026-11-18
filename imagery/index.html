@@ -23,15 +23,15 @@
   .tally .col i { display: block; width: 100%; background: var(--accent); transition: height .35s ease; min-height: 0; }
   .tally canvas { width: 200px; height: 200px; image-rendering: pixelated; }
   .tally .cnt { font: 800 64px/.9 var(--display); font-stretch: 70%; font-variant-numeric: tabular-nums; }
-  .tally .lv { font: 500 20px/1.3 var(--mono); }
-  .tally .tx { font: 400 21px/1.3 var(--body); color: var(--mute); min-height: 56px; }
+  .tally .lv { font: 500 24px/1.3 var(--mono); }
+  .tally .tx { font: 400 25px/1.3 var(--body); color: var(--mute); min-height: 56px; }
 
   .road { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 3px solid var(--ink); }
   .road div { padding: 20px 22px 0 22px; border-left: 3px solid var(--ink); display: flex; flex-direction: column; gap: 10px; }
   .road div:first-child { border-left: 0; padding-left: 0; }
   .road b { font: 800 84px/.9 var(--display); font-stretch: 70%; color: var(--accent); }
-  .road h3 { font: 700 34px/1.04 var(--display); font-stretch: 82%; }
-  .road p { font: 400 22px/1.35 var(--body); color: var(--mute); }
+  .road h3 { font: 700 38px/1.04 var(--display); font-stretch: 82%; }
+  .road p { font: 400 26px/1.32 var(--body); color: var(--mute); }
 
   .format { height: 330px; display: grid; place-items: center; background: var(--card); border: 1px solid var(--rule); }
   .format svg { width: 560px; height: 290px; }
@@ -39,43 +39,44 @@
   .timeline { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 3px solid var(--ink); }
   .timeline div { padding: 14px 20px 0 0; }
   .timeline b { font: 750 44px/1 var(--display); font-stretch: 75%; display: block; }
-  .timeline span { font: 400 22px/1.35 var(--body); color: var(--mute); }
+  .timeline span { font: 400 25px/1.32 var(--body); color: var(--mute); }
 
   .hier svg { width: 1664px; height: 430px; display: block; overflow: visible; }
-  .hier text { font-family: var(--mono); font-size: 22px; fill: var(--ink); text-anchor: middle; }
-  .hier .sub { fill: var(--mute); font-size: 18px; }
+  .hier text { font-family: var(--mono); font-size: 26px; fill: var(--ink); text-anchor: middle; }
+  .hier .sub { fill: var(--mute); font-size: 21px; }
   .hier .node { fill: var(--card); stroke: var(--ink); stroke-width: 3; transition: fill .4s, opacity .4s; }
   .hier .link { stroke: var(--rule); stroke-width: 6; }
   .hier .num { font: 800 34px var(--display); fill: #fff; }
   .hier .ov { fill: var(--accent); transition: height .6s ease, y .6s ease, opacity .4s; }
 
-  .neon { background: #fff; border: 1px solid var(--rule); width: 760px; }
-  .neon svg { display: block; width: 760px; height: 520px; }
+  .neon { background: #fff; border: 1px solid var(--rule); width: 640px; }
+  .neon svg { display: block; width: 640px; height: 438px; }
 
-  .trial { width: 460px; height: 460px; background: #000; position: relative; display: grid; place-items: center; color: #EEF0F2; }
+  .trial { width: 380px; height: 380px; background: #000; position: relative; display: grid; place-items: center; color: #EEF0F2; }
   .trial canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
   .trial .msg { position: relative; text-align: center; font: 750 64px/1 var(--display); font-stretch: 75%; padding: 0 24px; }
-  .trial .msg small { display: block; font: 400 22px/1.4 var(--mono); color: #9DA3AC; margin-top: 14px; }
+  .trial .msg small { display: block; font: 400 26px/1.4 var(--mono); color: #9DA3AC; margin-top: 14px; }
   .steps4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 3px solid var(--ink); }
-  .steps4 div { padding: 12px 14px 12px 0; font: 400 20px/1.3 var(--mono); color: var(--mute); border-bottom: 6px solid transparent; }
+  .steps4 div { padding: 12px 14px 12px 0; font: 400 24px/1.3 var(--mono); color: var(--mute); border-bottom: 6px solid transparent; }
   .steps4 div b { display: block; color: var(--ink); font-weight: 500; }
   .steps4 div.on { border-bottom-color: var(--accent); }
 
   .energy svg { width: 100%; height: 250px; overflow: visible; }
-  .energy text { font-family: var(--mono); font-size: 19px; fill: var(--mute); }
+  .energy text { font-family: var(--mono); font-size: 23px; fill: var(--mute); }
 
-  .board { width: 800px; height: 600px; image-rendering: pixelated; background: #111; }
+  #boardPresets .chip { font-size: 21px; padding: 10px 12px; }
+  .board { width: 700px; height: 525px; image-rendering: pixelated; background: #111; }
 
   .cog svg { width: 780px; height: 676px; display: block; }
   .cog .zone { fill: var(--accent); }
   .cog .nd { cursor: pointer; }
   .cog .nd rect { fill: var(--card); stroke: var(--ink); stroke-width: 2; }
-  .cog .nd text { font-family: var(--mono); font-size: 19px; text-anchor: middle; dominant-baseline: central; fill: var(--ink); pointer-events: none; }
+  .cog .nd text { font-family: var(--mono); font-size: 21px; text-anchor: middle; dominant-baseline: central; fill: var(--ink); pointer-events: none; }
   .cog .nd.sel rect { fill: var(--ink); } .cog .nd.sel text { fill: var(--paper); }
 
   .wm { width: 700px; height: 560px; background: #000; display: grid; place-items: center; position: relative; }
   .wm svg { width: 100%; height: 100%; }
-  .wm .say { position: absolute; left: 0; right: 0; bottom: 22px; text-align: center; font: 400 22px var(--mono); color: #9DA3AC; }
+  .wm .say { position: absolute; left: 0; right: 0; bottom: 22px; text-align: center; font: 400 26px var(--mono); color: #9DA3AC; }
   .votes { display: flex; flex-direction: column; gap: 14px; }
   .votes button { display: flex; justify-content: space-between; gap: 20px; align-items: baseline; text-align: left; font-size: 24px; }
   .votes button b { font: 800 52px/.8 var(--display); font-stretch: 70%; }
@@ -122,7 +123,7 @@
     <div class="spacer"></div>
     <div class="tally" id="tally"></div>
     <div class="row" style="justify-content:space-between">
-      <span class="label">Click a column for each hand · Shift-click to take one back · this is the room's own data, we come back to it</span>
+      <span></span>
       <button class="chip" id="tallyReset" style="font-size:18px; padding:8px 12px">Reset</button>
     </div>
     <aside class="notes">Give everyone ten seconds with eyes closed. Count hands per column and click that column once per hand. The five steps are a vividness scale of the questionnaire kind (my addition; the paper does not print one). Point out what we just did: we measured imagery by asking people. That is exactly how it was done from Galton in 1880 until about 2008, and it is the first problem the paper deals with.</aside>
@@ -217,12 +218,12 @@
   <section class="slide" data-hook="neon">
     <div class="meta"><span>1 · Neural mechanisms · Fig. 3</span><span>Try it</span></div>
     <h2 class="title">Not every image is one you asked for.</h2>
-    <div class="cols" style="grid-template-columns: 760px 1fr">
+    <div class="cols" style="grid-template-columns: 640px 1fr">
       <div class="stack" style="gap:14px">
         <div class="neon"><svg id="neonSvg" viewBox="0 0 760 520"></svg></div>
         <div class="row">
           <button class="chip" id="neonBtn" aria-pressed="false">Remove the black grid</button>
-          <span class="label">Do you see two tinted discs? Only the thin lines are coloured.</span>
+          <span class="label">Only the thin lines are coloured.</span>
         </div>
       </div>
       <div class="stack">
@@ -240,15 +241,15 @@
   <section class="slide" data-hook="rivalry">
     <div class="meta"><span>Method · Box 2</span><span>Try it · binocular rivalry priming</span></div>
     <h2 class="title">How do you measure a picture only one person can see?</h2>
-    <div class="cols" style="grid-template-columns: 600px 1fr">
+    <div class="cols" style="grid-template-columns: 560px 1fr">
       <div class="stack" style="gap:14px">
-        <div class="trial" id="trial"><canvas id="trialCv" width="560" height="560"></canvas><div class="msg" id="trialMsg">Ready<small>one trial takes about 9 seconds</small></div></div>
-        <div class="steps4" id="trialSteps"><div><b>Cue</b>1 s</div><div><b>Imagine</b>6 s</div><div><b>Display</b>0.75 s</div><div><b>Report</b></div></div>
-        <div class="row"><button class="chip go" id="trialGo">Run a trial</button><span class="label">Here both eyes see both patterns; in the lab each eye gets one. Timings are for this demo.</span></div>
+        <div class="trial" id="trial"><canvas id="trialCv" width="560" height="560"></canvas><div class="msg" id="trialMsg">Ready<small>one trial takes about 11 seconds</small></div></div>
+        <div class="steps4" id="trialSteps"><div><b>Cue</b>3 s</div><div><b>Imagine</b>6 s</div><div><b>Display</b>0.75 s</div><div><b>Report</b></div></div>
+        <div class="row"><button class="chip go" id="trialGo">Run a trial</button></div>
       </div>
       <div class="stack">
         <ul class="list">
-          <li><b>Until 2008: questionnaires.</b> Vividness ratings, since Galton (1880). <small>What we did on slide 2.</small></li>
+          <li><b>Until 2008: questionnaires.</b> Vividness ratings, since Galton (1880). <small>What we did at the start.</small></li>
           <li data-step="1"><b>The trick:</b> show a different pattern to each eye and only one is seen at a time. Imagining one beforehand makes it <b>more likely to be the one you see</b>.</li>
           <li data-step="2">The bias <b>tracks vividness</b>, trial by trial and person by person, and survives a demanding task in between.</li>
           <li data-step="3"><b>Not just attention:</b> imagery and attention differ in their timing and in how easily sensory input disrupts them.</li>
@@ -294,17 +295,17 @@
   <section class="slide dark" data-hook="board">
     <div class="meta"><span>1 · Neural mechanisms · Fig. 4</span><span>Try it</span></div>
     <h2 class="title">Why is your image stronger than mine?</h2>
-    <div class="cols" style="grid-template-columns: 800px 1fr">
+    <div class="cols" style="grid-template-columns: 700px 1fr">
       <canvas class="board" id="boardCv" width="800" height="600" aria-label="A square on a noisy blackboard"></canvas>
-      <div class="stack" style="gap:26px">
+      <div class="stack" style="gap:16px">
         <p class="body">The visual cortex as a <b>blackboard</b>. An image is chalk from above on a surface that is never quiet.</p>
         <label class="slider"><span>Top-down signal · the chalk</span><output id="sigOut">70</output><input type="range" id="sig" min="0" max="100" value="70"></label>
         <label class="slider"><span>Noise in visual cortex · the board</span><output id="noiOut">30</output><input type="range" id="noi" min="0" max="100" value="30"></label>
-        <div class="row" id="boardPresets">
-          <button class="chip" data-s="95" data-n="10">Strong · quiet</button>
-          <button class="chip" data-s="95" data-n="90">Strong · noisy</button>
-          <button class="chip" data-s="25" data-n="10">Weak · quiet</button>
-          <button class="chip" data-s="25" data-n="90">Weak · noisy</button>
+        <div class="row" id="boardPresets" style="flex-wrap:nowrap; gap:12px">
+          <button class="chip" data-s="95" data-n="10">Strong/quiet</button>
+          <button class="chip" data-s="95" data-n="90">Strong/noisy</button>
+          <button class="chip" data-s="25" data-n="10">Weak/quiet</button>
+          <button class="chip" data-s="25" data-n="90">Weak/noisy</button>
         </div>
         <ul class="list tight" data-step="1">
           <li><b>Smaller V1 and V2 → stronger imagery</b>, but less precise.</li>
@@ -314,13 +315,13 @@
         </ul>
       </div>
     </div>
-    <p class="src">Interactive version of Pearson (2019), Fig. 4. The picture is an illustration of the hypothesis, not a simulation of cortex.</p>
+    <p class="src">An illustration of the hypothesis, not a simulation of cortex.</p>
     <aside class="notes">Let someone call out settings, or use the four presets, which are the four corners of Fig. 4. Strong signal on a quiet board is the strongest image; weak signal on a noisy board is the weakest. Two different people can end up with equally poor imagery for opposite reasons. Then the evidence: V1 surface area predicts imagery strength negatively; the same pattern appears in schizophrenia, where V1 is about 25 percent smaller and imagery is more vivid. Stress the caveat: Pearson says himself this is correlational and a theory.</aside>
   </section>
 
   <!-- 11 · Cognition map -->
   <section class="slide" data-hook="cog">
-    <div class="meta"><span>3 · Imagery in everyday cognition · Fig. 5</span><span>Click a process</span></div>
+    <div class="meta"><span>3 · Imagery in everyday cognition · Fig. 5</span><span>Mental imagery and cognition</span></div>
     <h2 class="title sm">If thinking borrows imagery, differences in imagery spread everywhere.</h2>
     <div class="cols" style="grid-template-columns: 780px 1fr; gap:64px">
       <div class="cog"><svg id="cogSvg" viewBox="0 0 900 780"></svg></div>
@@ -437,45 +438,6 @@
       </div>
     </div>
     <aside class="notes">This is the paper's own discussion section. The claim is strong: imagery is 'the key to understanding normal visual perception' because it isolates feedback. Then read the open questions; several of them are picked up by this week's other readings, which is the next slide.</aside>
-  </section>
-
-  <!-- 16 · Critique -->
-  <section class="slide">
-    <div class="meta"><span>Critical reading</span><span>Limits · click any line to edit</span></div>
-    <h2 class="title">What I would push back on.</h2>
-    <div class="cols" style="grid-template-columns: 1fr 620px">
-      <ul class="list">
-        <li data-edit="c1">A narrative review by one author: no search strategy, no way to check what was left out.</li>
-        <li data-edit="c2">The objective measure that carries the strongest claims, rivalry priming, is the author's own paradigm.</li>
-        <li data-edit="c3">The V1-size story is correlational across people and across disorders; the blackboard model is untested.</li>
-        <li data-edit="c4">Most of Fig. 5 rests on questionnaires, the very measure the paper calls unreliable.</li>
-        <li data-edit="c5">“Imagery” covers an apple, a mental rotation and a tennis serve. The paper notes this, then keeps one word for all three.</li>
-        <li data-edit="c6">Vision only. Whether any of this holds for sound, touch or movement is assumed.</li>
-      </ul>
-      <div class="stack" data-step="1">
-        <h3 class="h3">Since 2019 · this week's readings</h3>
-        <ul class="list tight">
-          <li><b>Dijkstra et al. (2019)</b><small>Overlap grows up the hierarchy; the main difference is the missing bottom-up input</small></li>
-          <li><b>Chang et al. (2025)</b><small>In aphantasia, imagery attempts are decodable from V1, but the patterns are not shared with perception</small></li>
-          <li><b>Lande &amp; Green (2026)</b><small>Reconsidering the role of imagery in perception</small></li>
-          <li><b>Koenig-Robert, Pace &amp; Pearson (2026)</b><small>Rethinking cortical feedback in imagery</small></li>
-        </ul>
-      </div>
-    </div>
-    <aside class="notes">These are starting points; rewrite them in your own words, they save automatically in this browser. The strongest two: the reliance on one paradigm from the author's lab, and the tension in Fig. 5, where links built on self-report sit next to a section saying self-report is the problem. Chang et al. 2025 is a direct challenge to 'aphantasia means no sensory representation' and to 'imagery is weak perception': something is in V1, but it is not perception-like.</aside>
-  </section>
-
-  <!-- 17 · Discussion -->
-  <section class="slide dark">
-    <div class="meta"><span>Discussion</span><span>Click a question to edit</span></div>
-    <h2 class="title">Questions for the room.</h2>
-    <ol class="qs">
-      <li data-edit="q1">If an aphantasic person and a vivid imager get the same score on a memory task, what did the task measure?</li>
-      <li data-edit="q2">Rivalry priming: is it imagery, or attention and expectation under a new name?</li>
-      <li data-edit="q3">Stronger imagery is less precise. Is a vivid mind's eye an advantage for someone who draws or designs?</li>
-      <li data-edit="q4">If V1 holds a pattern during an aphantasic's “imagery” that does not look like perception, is “weak perception” still the right model?</li>
-    </ol>
-    <aside class="notes">Replace these with your own questions before class. Q1 follows from the working-memory demo. Q2 is the methodological one. Q3 connects to week 4 on drawing and to your own practice. Q4 uses Chang et al. 2025 against the 2019 review.</aside>
   </section>
 
   <!-- 22 · End -->
@@ -645,13 +607,13 @@
       for (let p = 90; p < 470; p += 40) horizontal ? x.fillRect(90, p, 380, 20) : x.fillRect(p, 90, 20, 380);
       x.restore();
     }
-    function reset() { timers.forEach(clearTimeout); timers = []; clear(); phase(-1); say("Ready", "one trial takes about 9 seconds"); go.disabled = false; }
+    function reset() { timers.forEach(clearTimeout); timers = []; clear(); phase(-1); say("Ready", "one trial takes about 11 seconds"); go.disabled = false; }
     go.onclick = () => {
       go.disabled = true; const red = Math.random() < .5; const at = (ms, fn) => timers.push(setTimeout(fn, ms));
       clear(); phase(0); say(red ? "R" : "G", red ? "imagine red horizontal stripes" : "imagine green vertical stripes");
-      at(1000, () => { phase(1); let s = 6; say("Imagine it", s + " s"); for (let k = 1; k < 6; k++) at(k * 1000, () => say("Imagine it", (6 - k) + " s")); });
-      at(7000, () => { phase(2); say(""); grating("#D01818", true); grating("#12A82C", false); });
-      at(7750, () => { clear(); phase(3); say("Which one did you see more of?", `you imagined ${red ? "red" : "green"}`); go.disabled = false; });
+      at(3000, () => { phase(1); say("Imagine it", "6 s"); for (let k = 1; k < 6; k++) at(3000 + k * 1000, () => say("Imagine it", (6 - k) + " s")); });
+      at(9000, () => { phase(2); say(""); grating("#D01818", true); grating("#12A82C", false); });
+      at(9750, () => { clear(); phase(3); say("Which one did you see more of?", `you imagined ${red ? "red" : "green"}`); go.disabled = false; });
     };
     Deck.on("rivalry", { enter: reset, leave: reset });
   })();

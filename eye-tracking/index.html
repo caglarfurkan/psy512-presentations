@@ -22,14 +22,14 @@
   .road div { padding: 20px 22px 0; border-left: 3px solid var(--ink); display: flex; flex-direction: column; gap: 10px; }
   .road div:first-child { border-left: 0; padding-left: 0; }
   .road b { font: 800 84px/.9 var(--display); font-stretch: 70%; color: var(--accent); }
-  .road h3 { font: 700 34px/1.04 var(--display); font-stretch: 82%; }
-  .road p { font: 400 22px/1.35 var(--body); color: var(--mute); }
+  .road h3 { font: 700 38px/1.04 var(--display); font-stretch: 82%; }
+  .road p { font: 400 26px/1.32 var(--body); color: var(--mute); }
 
   .forms { display: grid; grid-template-columns: 1fr 120px 1fr; align-items: stretch; gap: 0; }
   .forms .f { border: 3px solid var(--ink); padding: 26px 30px; display: flex; flex-direction: column; gap: 10px; }
   .forms .f.ideal { background: var(--ink); color: var(--paper); }
   .forms .f.ideal p { color: #C8CCD2; }
-  .forms .f p { font: 400 25px/1.36 var(--body); color: var(--mute); }
+  .forms .f p { font: 400 28px/1.34 var(--body); color: var(--mute); }
   .forms .arrow { display: grid; place-items: center; font: 800 72px var(--display); color: var(--accent); }
 
   .graph { background: var(--card); border: 1px solid var(--rule); }
@@ -38,34 +38,34 @@
 
   .mit { display: grid; grid-template-columns: 1fr; }
   .rq { width: 100%; border-collapse: collapse; }
-  .rq th { text-align: left; font: 500 20px/1.3 var(--mono); color: var(--mute); padding: 0 28px 12px 0; border-bottom: 3px solid var(--ink); }
-  .rq td { padding: 20px 28px 20px 0; border-bottom: 1px solid var(--rule); vertical-align: top; font: 400 27px/1.34 var(--body); }
+  .rq th { text-align: left; font: 500 24px/1.3 var(--mono); color: var(--mute); padding: 0 28px 12px 0; border-bottom: 3px solid var(--ink); }
+  .rq td { padding: 20px 28px 20px 0; border-bottom: 1px solid var(--rule); vertical-align: top; font: 400 31px/1.3 var(--body); }
   .rq td:first-child { font: 800 64px/.9 var(--display); font-stretch: 70%; color: var(--accent); width: 70px; }
   .rq td:nth-child(2) { font-weight: 650; width: 40%; }
 
-  .chain { display: flex; align-items: center; gap: 14px; font: 500 22px var(--mono); flex-wrap: wrap; }
+  .chain { display: flex; align-items: center; gap: 14px; font: 500 25px var(--mono); flex-wrap: wrap; }
   .chain span { border: 2px solid var(--ink); padding: 12px 14px; }
   .chain span.t { background: var(--tut); border-color: var(--tut); color: #fff; }
   .chain span.s { background: #FFC61A; border-color: #FFC61A; color: #0F1012; }
   .chain i { font-style: normal; color: var(--mute); }
 
   .taskbar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-  .taskbar .chip { font-size: 19px; padding: 10px 14px; }
-  .readout { font: 500 22px var(--mono); margin-left: auto; }
+  .taskbar .chip { font-size: 22px; padding: 10px 14px; }
+  .readout { font: 500 25px var(--mono); margin-left: auto; }
   .simhead { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-  .legend { display: flex; gap: 28px; font: 500 21px var(--mono); align-items: center; }
+  .legend { display: flex; gap: 28px; font: 500 24px var(--mono); align-items: center; }
 
   .talk { display: flex; flex-direction: column; gap: 10px; }
-  .talk p { font: 400 25px/1.34 var(--body); padding: 12px 18px; max-width: 88%; }
+  .talk p { font: 400 30px/1.3 var(--body); padding: 12px 18px; max-width: 88%; }
   .talk .T { background: var(--tut); color: #fff; align-self: flex-start; }
   .talk .S { background: #FFC61A; color: #0F1012; align-self: flex-end; }
-  .talk .note { font: 400 19px/1.4 var(--mono); color: var(--mute); padding: 0; max-width: none; }
+  .talk .note { font: 400 23px/1.35 var(--mono); color: var(--mute); padding: 0; max-width: none; }
 
   .model { width: 100%; border-collapse: collapse; table-layout: fixed; }
   .model th { text-align: left; vertical-align: bottom; padding: 0 20px 14px 0; border-bottom: 3px solid var(--ink); font: 700 34px/1.02 var(--display); font-stretch: 80%; }
-  .model th small { display: block; font: 500 19px var(--mono); color: var(--accent); margin-bottom: 6px; }
-  .model th:first-child, .model td:first-child { width: 210px; font: 500 20px/1.3 var(--mono); color: var(--mute); }
-  .model td { padding: 16px 20px 16px 0; border-bottom: 1px solid var(--rule); vertical-align: top; font: 400 24px/1.32 var(--body); }
+  .model th small { display: block; font: 500 22px var(--mono); color: var(--accent); margin-bottom: 6px; }
+  .model th:first-child, .model td:first-child { width: 210px; font: 500 23px/1.3 var(--mono); color: var(--mute); }
+  .model td { padding: 16px 20px 16px 0; border-bottom: 1px solid var(--rule); vertical-align: top; font: 400 27px/1.28 var(--body); }
   .sync { height: 16px; background: var(--rule); position: relative; margin-top: 8px; }
   .sync i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); }
 </style>
@@ -395,35 +395,6 @@
     </div>
     <p class="quote" data-step="3" style="margin-top:40px">Open, by the authors' own account: when does this coupling arise, in which other settings, and how often does reframing actually work?</p>
     <aside class="notes">The practical message is a design principle, and it is one I find directly relevant to interface design and to HCI: most attention-guiding techniques redirect. The authors also say why automated tutors struggle with this genre: the right intervention depends on the moment-to-moment history of the learner's movement. They end with the limits of generality, which leads into the critique.</aside>
-  </section>
-
-  <!-- 17 · Critique -->
-  <section class="slide">
-    <div class="meta"><span>Critical reading</span><span>Limits · click any line to edit</span></div>
-    <h2 class="title">What I would push back on.</h2>
-    <ul class="list">
-      <li data-edit="c1">Four dyads and a handful of chosen stills. No counts of how often each pattern occurred, no second coder.</li>
-      <li data-edit="c2">The headline lag, ~17 ms, is exactly one sample at 60 Hz. That is the instrument's resolution, not a measured anticipation.</li>
-      <li data-edit="c3">In two dyads the tutor is the first author, who knows the hypothesis. In the other two the tutor is a student who had just learned the task.</li>
-      <li data-edit="c4">“Seeing it as isosceles” is read off a saccade pattern. The same pattern could be checking, habit, or boredom.</li>
-      <li data-edit="c5">“Reframing beats redirecting” rests on one success and one failure, with no redirecting condition and no learning measure.</li>
-      <li data-edit="c6">Vygotsky wrote about children's development; these are adults in a lab doing a designed task for a few minutes.</li>
-    </ul>
-    <aside class="notes">Starting points; rewrite them in your own words, they save automatically in this browser. The second point is the sharpest technically: with 60 Hz sampling and a 30 Hz scene video, a one-sample lag cannot distinguish prediction from perfect tracking. The authors themselves call the evidence idiosyncratic to their lab setting. A fair counterpoint to keep ready: the paper's stated aim is a method and an exemplification, not an effect size.</aside>
-  </section>
-
-  <!-- 18 · Discussion -->
-  <section class="slide dark">
-    <div class="meta"><span>Discussion</span><span>Click a question to edit</span></div>
-    <h2 class="title">Questions for the room.</h2>
-    <ol class="qs">
-      <li data-edit="q1">The tutor's gaze follows within 17–60 ms. Is she predicting the student, or just tracking a moving object like anyone would?</li>
-      <li data-edit="q2">Can an eye-movement pattern show what someone understands, or only where they look?</li>
-      <li data-edit="q3">Interfaces guide attention with highlights and arrows. When does a cue help, and when does it replace the seeing?</li>
-      <li data-edit="q4">Could an AI tutor with an eye tracker find the “micro-zone”? What would it need besides gaze?</li>
-    </ol>
-    <p class="src">Other readings this week: Zhaoping (2026), vision as looking and seeing through a bottleneck · Korda et al. (2024), eye behaviour coupled to imagery · Wynn et al. (2020), gaze reinstatement · Takamura et al. (2026), eye movements in aphantasia.</p>
-    <aside class="notes">Replace with your own questions before class. Q1 and Q2 are methodological. Q3 and Q4 are where the paper meets design and HCI. Bridge to the other readings: Zhaoping separates looking from seeing at the level of the visual system; this paper separates them at the level of culture. Korda et al. describe eyes coupled to one's own imagery; here the tutor's eyes are coupled to someone else's action.</aside>
   </section>
 
   <!-- 19 · End -->
